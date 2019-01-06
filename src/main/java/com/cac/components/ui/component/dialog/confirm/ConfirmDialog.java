@@ -1,8 +1,12 @@
-package com.cac.components.ui.component.dialog;
+package com.cac.components.ui.component.dialog.confirm;
+
+import com.cac.components.ui.component.dialog.Dialog;
+import com.cac.components.ui.component.dialog.MessageType;
+import com.cac.components.ui.component.dialog.OptionType;
 
 import javax.swing.JOptionPane;
 
-public abstract class ConfirmDialog implements Dialog, Response {
+public abstract class ConfirmDialog implements Dialog {
     private String title;
     private String message;
     private MessageType messageType;

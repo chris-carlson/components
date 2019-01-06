@@ -6,16 +6,14 @@ import com.cac.components.ui.border.LineBorder;
 import com.cac.components.ui.component.Container;
 import com.cac.components.ui.component.Frame;
 import com.cac.components.ui.component.Panel;
-import com.cac.components.ui.component.dialog.ConfirmDialog;
-import com.cac.components.ui.component.dialog.Dialog;
-import com.cac.components.ui.component.dialog.MessageDialog;
+import com.cac.components.ui.component.dialog.InputDialog;
 import com.cac.components.ui.component.dialog.MessageType;
-import com.cac.components.ui.component.dialog.OptionType;
 import com.cac.components.ui.layout.GridLayout;
+import com.cac.components.ui.listener.mouse.FocusMouseClickListener;
 import com.cac.components.ui.listener.mouse.MouseClickListener;
 import com.cac.components.ui.listener.mouse.MouseEvent;
-import com.cac.components.ui.listener.mouse.FocusMouseClickListener;
 import com.google.common.collect.Lists;
+
 import java.util.List;
 
 public class UiLaunch {
@@ -66,8 +64,10 @@ public class UiLaunch {
 
         @Override
         public void mouseClicked(MouseEvent event) {
-            MessageDialog dialog = new MessageDialog("Title", "Message", MessageType.INFORMATION);
+            InputDialog dialog = new InputDialog("Title", "Message", MessageType.INFORMATION);
             dialog.show();
+            String input = dialog.getInput();
+            System.out.println(input);
         }
     }
 }

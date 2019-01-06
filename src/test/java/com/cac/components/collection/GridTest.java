@@ -1,8 +1,6 @@
 package com.cac.components.collection;
 
 import com.google.common.testing.EqualsTester;
-import com.cac.components.collection.Dimension;
-import com.cac.components.collection.Position;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -75,7 +73,7 @@ class GridTest {
     @Test
     void checkEquals() {
         new EqualsTester().addEqualityGroup(getTestInstance1(), getTestInstance1())
-            .addEqualityGroup(getTestInstance2(), getTestInstance2()).testEquals();
+                .addEqualityGroup(getTestInstance2(), getTestInstance2()).testEquals();
     }
 
     @Test

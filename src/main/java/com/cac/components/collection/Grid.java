@@ -31,7 +31,7 @@ public class Grid<E> {
     public E get(Position position) {
         if (position.getRow() >= dimension.getNumRows() || position.getColumn() >= dimension.getNumColumns()) {
             throw new IllegalArgumentException(
-                "Row position \"" + position.getRow() + "\" and getColumn position \"" + position.getColumn() +
+                    "Row position \"" + position.getRow() + "\" and getColumn position \"" + position.getColumn() +
                     "\" must be in the bounds of the array");
         }
         Array<E> row = rep.get(position.getRow());
@@ -44,7 +44,7 @@ public class Grid<E> {
     public void set(Position position, E element) {
         if (position.getRow() >= dimension.getNumRows() || position.getColumn() >= dimension.getNumColumns()) {
             throw new IllegalArgumentException(
-                "Row position \"" + position.getRow() + "\" and getColumn position \"" + position.getColumn() +
+                    "Row position \"" + position.getRow() + "\" and getColumn position \"" + position.getColumn() +
                     "\" must be in the bounds of the array");
         }
         if (element == null) {

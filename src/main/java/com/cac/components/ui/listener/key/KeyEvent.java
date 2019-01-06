@@ -1,7 +1,7 @@
 package com.cac.components.ui.listener.key;
 
-import com.google.common.collect.ImmutableMap;
 import com.cac.components.ui.listener.InputEvent;
+import com.google.common.collect.ImmutableMap;
 
 import java.util.Map;
 

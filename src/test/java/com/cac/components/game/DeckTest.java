@@ -69,7 +69,7 @@ class DeckTest {
     @Test
     void checkEquals() {
         new EqualsTester().addEqualityGroup(getTestInstance1(), getTestInstance1())
-            .addEqualityGroup(getTestInstance2(), getTestInstance2()).testEquals();
+                .addEqualityGroup(getTestInstance2(), getTestInstance2()).testEquals();
     }
 
     @Test

@@ -39,9 +39,9 @@ public class SwingLaunch {
 //            mainPanel.add(colorPanel);
 //        }
         JLayeredPane pane = new JLayeredPane();
-        pane.add(createIcon("foo/asterisk.png"));
-        pane.add(createIcon("foo/fill.png"));
-        pane.add(createIcon("foo/outline.png"));
+        pane.add(createIcon("icons/asterisk.png"));
+        pane.add(createIcon("icons/fill.png"));
+        pane.add(createIcon("icons/outline.png"));
         pane.setPreferredSize(new Dimension(256, 256));
         mainPanel.add(pane);
         JFrame frame = new JFrame("Test");

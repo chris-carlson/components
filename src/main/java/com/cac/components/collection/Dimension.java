@@ -10,7 +10,7 @@ public class Dimension {
     public Dimension(int numRows, int numColumns) {
         if (numRows < 0 || numColumns < 0) {
             throw new IllegalArgumentException(
-                "The number of rows \"" + numRows + "\" and number of columns \"" + numColumns +
+                    "The number of rows \"" + numRows + "\" and number of columns \"" + numColumns +
                     "\" must be non-negative");
         }
         this.numRows = numRows;

@@ -10,7 +10,7 @@ public class Position {
     public Position(int row, int column) {
         if (row < 0 || column < 0) {
             throw new IllegalArgumentException(
-                "The getRow \"" + row + "\" and getColumn \"" + column + "\" must be non-negative");
+                    "The getRow \"" + row + "\" and getColumn \"" + column + "\" must be non-negative");
         }
         this.row = row;
         this.column = column;
