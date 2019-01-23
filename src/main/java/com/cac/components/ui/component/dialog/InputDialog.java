@@ -16,7 +16,8 @@ public class InputDialog implements Dialog {
 
     @Override
     public void show() {
-        input = JOptionPane.showInputDialog(null, message, title, type.getRep());
+        input = (String) JOptionPane
+                .showInputDialog(null, message, title, type.getRep(), null, new Object[]{"OK", "Cancel"}, "OK");
     }
 
     public String getInput() {

@@ -78,4 +78,9 @@ public class KeyEvent extends InputEvent {
     public Key getKey() {
         return KEY_MAPPER.get(rep.getKeyCode());
     }
+
+    @Override
+    public String toString() {
+        return getKey().toString();
+    }
 }

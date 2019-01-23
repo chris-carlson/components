@@ -71,6 +71,44 @@ class GridTest {
     }
 
     @Test
+    void reportRow() {
+        instance = getTestInstance1();
+        Assertions.assertEquals(ArrayCreator.create("4,5,6"), instance.getRow(1));
+    }
+
+    @Test
+    void doNotReportRowWhenIndexIsPastUpperBound() {
+        instance = getTestInstance1();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> instance.getRow(2));
+    }
+
+    @Test
+    void reportColumn() {
+        instance = getTestInstance1();
+        Assertions.assertEquals(ArrayCreator.create("2,5"), instance.getColumn(1));
+    }
+
+    @Test
+    void doNotReportColumnWhenIndexIsPastUpperBound() {
+        instance = getTestInstance1();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> instance.getColumn(4));
+    }
+
+    @Test
+    void reportSubGrid() {
+        instance = getTestInstance1();
+        Assertions.assertEquals(GridCreator.create("2,3|5,6"),
+                instance.getSubGrid(new Position(0, 1), new Dimension(2, 2)));
+    }
+
+    @Test
+    void doNotReportSubGridWhenPastBounds() {
+        instance = getTestInstance1();
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> instance.getSubGrid(new Position(0, 1), new Dimension(2, 3)));
+    }
+
+    @Test
     void checkEquals() {
         new EqualsTester().addEqualityGroup(getTestInstance1(), getTestInstance1())
                 .addEqualityGroup(getTestInstance2(), getTestInstance2()).testEquals();

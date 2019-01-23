@@ -10,4 +10,8 @@ public interface Colorable {
     default void setBackground(Color color) {
         getRep().setBackground(color.getRep());
     }
+
+    default void setForeground(Color color) {
+        getRep().setForeground(color.getRep());
+    }
 }

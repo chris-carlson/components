@@ -4,19 +4,23 @@ import com.cac.components.ui.attribute.Holdable;
 import com.cac.components.ui.attribute.Listenable;
 
 import javax.swing.JPanel;
-import java.awt.Component;
+import java.awt.Container;
 import java.awt.FlowLayout;
 
 public class Swapper implements Holdable, Listenable {
     private JPanel rep;
 
-    public Swapper(Holdable holdable) {
+    public Swapper() {
         rep = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
+    }
+
+    public Swapper(Holdable holdable) {
+        this();
         rep.add(holdable.getRep());
     }
 
     @Override
-    public Component getRep() {
+    public Container getRep() {
         return rep;
     }
 

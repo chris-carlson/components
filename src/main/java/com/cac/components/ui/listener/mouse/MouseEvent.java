@@ -20,4 +20,9 @@ public class MouseEvent extends InputEvent {
     public int getClickCount() {
         return rep.getClickCount();
     }
+
+    @Override
+    public String toString() {
+        return "(" + getButton().toString() + ", " + getClickCount() + ")";
+    }
 }

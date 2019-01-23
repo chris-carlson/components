@@ -1,7 +1,9 @@
-package com.cac.components.ui.listener.mouse;
+package com.cac.components.ui.listener.mouse.preset;
 
 import com.cac.components.ui.attribute.Bordered;
 import com.cac.components.ui.border.Border;
+import com.cac.components.ui.listener.mouse.MouseEvent;
+import com.cac.components.ui.listener.mouse.MouseHoverListener;
 
 public class BorderMouseHoverListener extends MouseHoverListener {
     private Bordered component;

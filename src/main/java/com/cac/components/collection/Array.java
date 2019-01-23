@@ -45,6 +45,14 @@ public class Array<E> {
         rep.set(index, element);
     }
 
+    public List<E> toList() {
+        List<E> list = new ArrayList<>();
+        for (int index = 0; index < getLength(); index++) {
+            list.add(get(index));
+        }
+        return list;
+    }
+
     boolean isSet(int index) {
         return rep.get(index) != null;
     }

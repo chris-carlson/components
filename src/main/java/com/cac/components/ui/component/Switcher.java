@@ -4,7 +4,7 @@ import com.cac.components.ui.attribute.Holdable;
 import com.cac.components.ui.attribute.Listenable;
 
 import javax.swing.JPanel;
-import java.awt.Component;
+import java.awt.Container;
 import java.awt.FlowLayout;
 
 public class Switcher implements Holdable, Listenable {
@@ -22,7 +22,7 @@ public class Switcher implements Holdable, Listenable {
     }
 
     @Override
-    public Component getRep() {
+    public Container getRep() {
         return rep;
     }
 

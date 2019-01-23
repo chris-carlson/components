@@ -16,12 +16,22 @@ import javax.swing.JLabel;
 public class Label implements Bordered, Colorable, Focusable, Holdable, Listenable, Sizable, Writable {
     private JLabel rep;
 
+    public Label() {
+        rep = new JLabel();
+        rep.setOpaque(true);
+    }
+
+    public Label(String text, Font font) {
+        this(text, font, HorizontalTextAlignment.CENTER, VerticalTextAlignment.CENTER);
+    }
+
     public Label(String text, Font font, HorizontalTextAlignment horizontalAlignment,
                  VerticalTextAlignment verticalAlignment) {
-        rep = new JLabel(text, horizontalAlignment.getRep());
+        this();
+        rep.setText(text);
+        rep.setHorizontalAlignment(horizontalAlignment.getRep());
         rep.setVerticalAlignment(verticalAlignment.getRep());
         rep.setFont(font.getRep());
-        rep.setOpaque(true);
     }
 
     @Override
