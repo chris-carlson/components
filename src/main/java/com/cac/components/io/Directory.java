@@ -2,13 +2,20 @@ package com.cac.components.io;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 public class Directory {
+    private static final Logger LOGGER = LogManager.getLogger();
+
     private java.io.File rep;
     private List<File> files;
     private List<Directory> directories;
@@ -76,6 +83,14 @@ public class Directory {
 
     public List<Directory> getDirectories() {
         return directories;
+    }
+
+    public void delete() {
+        try {
+            Files.delete(Path.of(rep.getAbsolutePath()));
+        } catch (IOException exception) {
+            LOGGER.error("Could not delete file \"" + rep.getAbsolutePath() + "\"");
+        }
     }
 
     @Override

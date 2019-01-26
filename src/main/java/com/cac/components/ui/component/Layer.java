@@ -5,8 +5,8 @@ import com.cac.components.ui.attribute.Holder;
 import com.cac.components.ui.attribute.Listenable;
 import com.cac.components.ui.attribute.Sizable;
 
+import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
-import java.awt.Container;
 
 public class Layer implements Holdable, Holder, Listenable, Sizable {
     private JLayeredPane rep;
@@ -16,7 +16,7 @@ public class Layer implements Holdable, Holder, Listenable, Sizable {
     }
 
     @Override
-    public Container getRep() {
+    public JComponent getRep() {
         return rep;
     }
 

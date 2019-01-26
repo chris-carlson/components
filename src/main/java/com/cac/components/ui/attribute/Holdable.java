@@ -1,7 +1,15 @@
 package com.cac.components.ui.attribute;
 
-import java.awt.Component;
+import javax.swing.JComponent;
 
 public interface Holdable {
-    Component getRep();
+    JComponent getRep();
+
+    default void setHorizontalAlignment(Alignment alignment) {
+        getRep().setAlignmentX(alignment.getRep());
+    }
+
+    default void setVerticalAlignment(Alignment alignment) {
+        getRep().setAlignmentY(alignment.getRep());
+    }
 }

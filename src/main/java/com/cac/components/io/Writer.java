@@ -45,6 +45,10 @@ public class Writer {
         this.rep.print(o);
     }
 
+    public void writeLine() {
+        this.rep.println();
+    }
+
     public void writeLine(boolean b) {
         this.rep.println(b);
     }

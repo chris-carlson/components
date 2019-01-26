@@ -21,6 +21,9 @@ public class Frame implements Listenable {
 
     public void setContent(Holder holder) {
         rep.setContentPane(holder.getRep());
+    }
+
+    public void pack() {
         rep.pack();
     }
 

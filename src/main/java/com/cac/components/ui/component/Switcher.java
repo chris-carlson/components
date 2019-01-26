@@ -3,8 +3,8 @@ package com.cac.components.ui.component;
 import com.cac.components.ui.attribute.Holdable;
 import com.cac.components.ui.attribute.Listenable;
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
-import java.awt.Container;
 import java.awt.FlowLayout;
 
 public class Switcher implements Holdable, Listenable {
@@ -22,7 +22,7 @@ public class Switcher implements Holdable, Listenable {
     }
 
     @Override
-    public Container getRep() {
+    public JComponent getRep() {
         return rep;
     }
 

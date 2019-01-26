@@ -9,5 +9,7 @@ public interface Sizable {
 
     default void setSize(Dimension dimension) {
         getRep().setPreferredSize(dimension.getRep());
+        getRep().setMinimumSize(dimension.getRep());
+        getRep().setMaximumSize(dimension.getRep());
     }
 }

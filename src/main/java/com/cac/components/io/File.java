@@ -2,8 +2,16 @@ package com.cac.components.io;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class File {
+    private static final Logger LOGGER = LogManager.getLogger();
+
     private java.io.File rep;
 
     public File(String path) {
@@ -35,6 +43,14 @@ public class File {
     public String getDirectoryPath() {
         String absolutePath = rep.getAbsolutePath();
         return absolutePath.substring(0, absolutePath.lastIndexOf('\\'));
+    }
+
+    public void delete() {
+        try {
+            Files.delete(Path.of(rep.getAbsolutePath()));
+        } catch (IOException exception) {
+            LOGGER.error("Could not delete file \"" + rep.getAbsolutePath() + "\"");
+        }
     }
 
     @Override
