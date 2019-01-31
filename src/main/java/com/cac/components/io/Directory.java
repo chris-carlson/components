@@ -22,7 +22,7 @@ public class Directory {
 
     public Directory(String path) {
         rep = new java.io.File(path);
-        if (!rep.isDirectory()) {
+        if (rep.exists() && !rep.isDirectory()) {
             throw new IllegalArgumentException("Path \"" + path + "\" is not a directory");
         }
         files = new ArrayList<>();

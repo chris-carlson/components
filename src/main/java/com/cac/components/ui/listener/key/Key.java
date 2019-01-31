@@ -26,4 +26,86 @@ public enum Key {
     public static boolean isLetter(Key key) {
         return LETTERS.contains(key);
     }
+
+    public static Integer getNumber(Key key) {
+        if (key == Key.NUM_1) {
+            return 1;
+        } else if (key == Key.NUM_2) {
+            return 2;
+        } else if (key == Key.NUM_3) {
+            return 3;
+        } else if (key == Key.NUM_4) {
+            return 4;
+        } else if (key == Key.NUM_5) {
+            return 5;
+        } else if (key == Key.NUM_6) {
+            return 6;
+        } else if (key == Key.NUM_7) {
+            return 7;
+        } else if (key == Key.NUM_8) {
+            return 8;
+        } else if (key == Key.NUM_9) {
+            return 9;
+        } else if (key == Key.NUM_0) {
+            return 0;
+        }
+        return null;
+    }
+
+    public static Character getLetter(Key key) {
+        if (key == Key.Q) {
+            return 'Q';
+        } else if (key == Key.W) {
+            return 'W';
+        } else if (key == Key.E) {
+            return 'E';
+        } else if (key == Key.R) {
+            return 'R';
+        } else if (key == Key.T) {
+            return 'T';
+        } else if (key == Key.Y) {
+            return 'Y';
+        } else if (key == Key.U) {
+            return 'U';
+        } else if (key == Key.I) {
+            return 'I';
+        } else if (key == Key.O) {
+            return 'O';
+        } else if (key == Key.P) {
+            return 'P';
+        } else if (key == Key.A) {
+            return 'A';
+        } else if (key == Key.S) {
+            return 'S';
+        } else if (key == Key.D) {
+            return 'D';
+        } else if (key == Key.F) {
+            return 'F';
+        } else if (key == Key.G) {
+            return 'G';
+        } else if (key == Key.H) {
+            return 'H';
+        } else if (key == Key.J) {
+            return 'J';
+        } else if (key == Key.K) {
+            return 'K';
+        } else if (key == Key.L) {
+            return 'L';
+        } else if (key == Key.Z) {
+            return 'Z';
+        } else if (key == Key.X) {
+            return 'X';
+        } else if (key == Key.C) {
+            return 'C';
+        } else if (key == Key.V) {
+            return 'V';
+        } else if (key == Key.B) {
+            return 'B';
+        } else if (key == Key.N) {
+            return 'N';
+        } else if (key == Key.M) {
+            return 'M';
+        }
+        return null;
+    }
 }

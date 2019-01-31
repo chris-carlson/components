@@ -1,4 +1,4 @@
-package com.cac.components.ui.component.dialog;
+package com.cac.components.ui.component.dialog.confirm;
 
 import javax.swing.JOptionPane;
 
