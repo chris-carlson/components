@@ -5,7 +5,7 @@ import com.cac.components.ui.component.dialog.MessageType;
 
 import javax.swing.JOptionPane;
 
-public abstract class ConfirmDialog implements Dialog {
+public abstract class ConfirmDialog<E> implements Dialog {
     private String title;
     private String message;
     private MessageType messageType;
@@ -23,6 +23,8 @@ public abstract class ConfirmDialog implements Dialog {
     public void show() {
         response = JOptionPane.showConfirmDialog(null, message, title, optionType.getRep(), messageType.getRep());
     }
+
+    public abstract E getResponse();
 
     protected int getResponseRep() {
         return response;

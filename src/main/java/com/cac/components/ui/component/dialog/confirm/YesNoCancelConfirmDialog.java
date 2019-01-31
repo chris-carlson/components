@@ -2,7 +2,7 @@ package com.cac.components.ui.component.dialog.confirm;
 
 import com.cac.components.ui.component.dialog.MessageType;
 
-public class YesNoCancelConfirmDialog extends ConfirmDialog {
+public class YesNoCancelConfirmDialog extends ConfirmDialog<YesNoCancelOption> {
     public YesNoCancelConfirmDialog(String title, String message, MessageType messageType) {
         super(title, message, messageType, OptionType.YES_NO_CANCEL);
     }

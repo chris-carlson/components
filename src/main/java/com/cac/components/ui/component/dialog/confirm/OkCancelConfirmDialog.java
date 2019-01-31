@@ -2,7 +2,7 @@ package com.cac.components.ui.component.dialog.confirm;
 
 import com.cac.components.ui.component.dialog.MessageType;
 
-public class OkCancelConfirmDialog extends ConfirmDialog {
+public class OkCancelConfirmDialog extends ConfirmDialog<OkCancelOption> {
     public OkCancelConfirmDialog(String title, String message, MessageType messageType) {
         super(title, message, messageType, OptionType.OK_CANCEL);
     }
