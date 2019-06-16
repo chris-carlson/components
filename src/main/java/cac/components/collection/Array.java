@@ -73,7 +73,7 @@ public class Array<E> {
         if (obj.getClass() != getClass()) {
             return false;
         }
-        Array<E> other = (Array<E>) obj;
+        Array<?> other = (Array<?>) obj;
         return new EqualsBuilder().append(rep, other.rep).isEquals();
     }
 

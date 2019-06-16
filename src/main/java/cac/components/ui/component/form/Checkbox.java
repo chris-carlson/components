@@ -23,7 +23,7 @@ public class Checkbox extends Container {
     private boolean isEnabled;
     private Panel panel;
 
-    public Checkbox(String text, Font font, Dimension dimension, DataAction action) {
+    public Checkbox(String text, Font font, Dimension dimension, DataAction<Boolean> action) {
         isChecked = false;
         isEnabled = true;
         this.panel = new Panel();

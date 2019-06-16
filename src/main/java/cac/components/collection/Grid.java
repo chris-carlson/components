@@ -121,7 +121,7 @@ public class Grid<E> implements Iterable<Position> {
         if (obj.getClass() != getClass()) {
             return false;
         }
-        Grid<E> other = (Grid<E>) obj;
+        Grid<?> other = (Grid<?>) obj;
         return new EqualsBuilder().append(rep, other.rep).isEquals();
     }
 

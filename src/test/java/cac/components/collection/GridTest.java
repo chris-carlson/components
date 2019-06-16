@@ -120,11 +120,11 @@ class GridTest {
         Assertions.assertEquals("[[1, 2, 3], [4, 5, 6]]", instance.toString());
     }
 
-    private Grid getTestInstance1() {
+    private Grid<Integer> getTestInstance1() {
         return GridCreator.create("1,2,3|4,5,6");
     }
 
-    private Grid getTestInstance2() {
+    private Grid<Integer> getTestInstance2() {
         return GridCreator.create("1,2,3|4,5,7");
     }
 }
