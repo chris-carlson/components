@@ -1,11 +1,12 @@
 package cac.components.ui.component.frame;
 
+import java.awt.Window;
+
+import javax.swing.JFrame;
+
 import cac.components.ui.attribute.Holder;
 import cac.components.ui.attribute.Modifiable;
 import cac.components.ui.attribute.Windowed;
-
-import javax.swing.JFrame;
-import java.awt.Window;
 
 public class Frame implements Modifiable, Windowed {
     private JFrame rep;

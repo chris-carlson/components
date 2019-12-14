@@ -1,4 +1,4 @@
-package cac.components.io.path;
+package cac.components.path;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -73,8 +73,8 @@ public class Directory {
     }
 
     public Directory getDirectory(String name) {
-        Optional<Directory> optionalFile =
-                directories.stream().filter(directory -> directory.getName().equals(name)).findFirst();
+        Optional<Directory> optionalFile = directories.stream().filter(directory -> directory.getName().equals(name))
+                .findFirst();
         if (optionalFile.isPresent()) {
             return optionalFile.get();
         }

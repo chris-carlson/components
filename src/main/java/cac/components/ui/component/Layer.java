@@ -5,6 +5,8 @@ import cac.components.ui.attribute.Holder;
 import cac.components.ui.attribute.Modifiable;
 import cac.components.ui.attribute.Sizable;
 
+import java.awt.Dimension;
+
 import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
 
@@ -22,7 +24,11 @@ public class Layer implements Holdable, Holder, Modifiable, Sizable {
 
     @Override
     public void add(Holdable holdable) {
-        rep.add(holdable.getRep(), 0);
+        JComponent component = holdable.getRep();
+        Dimension dimension = component.getPreferredSize();
+        component.setBounds(0, 0, (int) dimension.getWidth(), (int) dimension.getHeight());
+        rep.setPreferredSize(dimension);
+        rep.add(component, 0);
     }
 
     public void remove() {

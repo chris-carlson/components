@@ -1,6 +1,6 @@
 package cac.components.io.text;
 
-import cac.components.io.path.File;
+import cac.components.path.File;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

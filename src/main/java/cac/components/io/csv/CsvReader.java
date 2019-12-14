@@ -3,7 +3,7 @@ package cac.components.io.csv;
 import cac.components.collection.Dimension;
 import cac.components.collection.Grid;
 import cac.components.collection.Position;
-import cac.components.io.path.File;
+import cac.components.path.File;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -19,25 +19,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.Lists;
+
 public class CsvReader {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private CsvData data;
+    private File file;
 
     public CsvReader(File file) {
+        this.file = file;
+    }
+
+    public CsvData getData() {
         try {
             try (Reader reader = Files.newBufferedReader(Paths.get(file.getPath()))) {
                 CSVParser parser = new CSVParser(reader,
                         CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());
-                data = readData(parser);
+                return readData(parser);
             }
         } catch (IOException exception) {
             LOGGER.error("Could not parse CSV file \"" + file.getPath() + "\"");
         }
-    }
-
-    public CsvData getData() {
-        return data;
+        return new CsvData(new CsvHeaders(Lists.newArrayList()), new Grid<>(new Dimension(0, 0)));
     }
 
     private CsvData readData(CSVParser parser) {

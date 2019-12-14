@@ -17,15 +17,15 @@ public class Deck<E> {
         discardPile = new ArrayList<>();
     }
 
-    public Deck(List<E> elements) {
-        if (elements.stream().anyMatch(Objects::isNull)) {
+    public Deck(List<E> drawPile) {
+        if (drawPile.stream().anyMatch(Objects::isNull)) {
             throw new IllegalArgumentException("The draw pile cannot have any null elements");
         }
-        drawPile = new ArrayList<>(elements);
+        this.drawPile = new ArrayList<>(drawPile);
         discardPile = new ArrayList<>();
     }
 
-    Deck(List<E> drawPile, List<E> discardPile) {
+    public Deck(List<E> drawPile, List<E> discardPile) {
         this.drawPile = new ArrayList<>(drawPile);
         this.discardPile = new ArrayList<>(discardPile);
     }
