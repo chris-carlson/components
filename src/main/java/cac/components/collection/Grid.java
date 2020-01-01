@@ -32,8 +32,12 @@ public class Grid<E> implements Iterable<Position> {
         return dimension;
     }
 
+    public boolean isValid(Position position) {
+        return position.getRow() < dimension.getNumRows() && position.getColumn() < dimension.getNumColumns();
+    }
+
     public E get(Position position) {
-        if (position.getRow() >= dimension.getNumRows() || position.getColumn() >= dimension.getNumColumns()) {
+        if (!isValid(position)) {
             throw new IllegalArgumentException("Position " + position + " must be in the bounds of the grid");
         }
         Array<E> row = rep.get(position.getRow());
@@ -44,7 +48,7 @@ public class Grid<E> implements Iterable<Position> {
     }
 
     public void set(Position position, E element) {
-        if (position.getRow() >= dimension.getNumRows() || position.getColumn() >= dimension.getNumColumns()) {
+        if (!isValid(position)) {
             throw new IllegalArgumentException("Position " + position + " must be in the bounds of the grid");
         }
         if (element == null) {

@@ -15,6 +15,20 @@ class GridTest {
     }
 
     @Test
+    void checkPositionIsValid() {
+        Dimension dimension = new Dimension(2, 3);
+        instance = new Grid<>(dimension);
+        Assertions.assertTrue(instance.isValid(new Position(1, 2)));
+    }
+
+    @Test
+    void checkPositionIsInvalid() {
+        Dimension dimension = new Dimension(2, 3);
+        instance = new Grid<>(dimension);
+        Assertions.assertFalse(instance.isValid(new Position(2, 2)));
+    }
+
+    @Test
     void reportElement() {
         instance = getTestInstance1();
         Assertions.assertEquals(Integer.valueOf(5), instance.get(new Position(1, 1)));
