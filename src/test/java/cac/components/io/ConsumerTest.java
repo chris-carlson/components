@@ -1,9 +1,11 @@
 package cac.components.io;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ConsumerTest {
@@ -182,5 +184,19 @@ class ConsumerTest {
     void stringRep() {
         instance = new Consumer("abc");
         Assertions.assertEquals("abc", instance.toString());
+    }
+
+    @Test
+    void consumePair() {
+        instance = new Consumer("(abc(def(ghi)jkl)mno)pqr");
+        assertEquals("abc(def(ghi)jkl)mno", instance.consumePair('(', ')'));
+        assertEquals("pqr", instance.getRep());
+    }
+
+    @Test
+    void consumeList() {
+        instance = new Consumer("[(abc),(def),(ghi)]jkl");
+        assertEquals(Lists.newArrayList("abc", "def", "ghi"), instance.consumeList('(', ')'));
+        assertEquals("jkl", instance.getRep());
     }
 }

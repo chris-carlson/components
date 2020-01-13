@@ -2,6 +2,8 @@ package cac.components.io;
 
 import com.google.common.collect.Sets;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class Consumer {
@@ -128,6 +130,36 @@ public class Consumer {
         String consumedCharacters = rep;
         rep = "";
         return consumedCharacters;
+    }
+
+    public String consumePair(Character startCharacter, Character endCharacter) {
+        StringBuilder builder = new StringBuilder();
+        consumeCharacter(startCharacter);
+        int numStartCharacter = 0;
+        while (peek() != endCharacter || numStartCharacter > 0) {
+            Character character = consumeCharacter();
+            if (character == startCharacter) {
+                numStartCharacter++;
+            } else if (character == endCharacter) {
+                numStartCharacter--;
+            }
+            builder.append(character);
+        }
+        consumeCharacter(endCharacter);
+        return builder.toString();
+    }
+
+    public List<String> consumeList(Character startCharacter, Character endCharacter) {
+        List<String> list = new ArrayList<>();
+        consumeCharacter('[');
+        while (peek() != ']') {
+            list.add(consumePair(startCharacter, endCharacter));
+            if (peek() != ']') {
+                consumeCharacter(',');
+            }
+        }
+        consumeCharacter(']');
+        return list;
     }
 
     private boolean containsOneOf(Set<Character> characters) {
