@@ -8,10 +8,10 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Grid<E> implements Iterable<Position> {
-    private Dimension dimension;
+    private GridDimension dimension;
     private Array<Array<E>> rep;
 
-    public Grid(Dimension dimension) {
+    public Grid(GridDimension dimension) {
         this.dimension = dimension;
         rep = new Array<>(dimension.getNumRows());
         for (int index = 0; index < rep.getLength(); index++) {
@@ -24,11 +24,11 @@ public class Grid<E> implements Iterable<Position> {
         if (rep.getLength() > 0) {
             numColumns = rep.get(0).getLength();
         }
-        dimension = new Dimension(rep.getLength(), numColumns);
+        dimension = new GridDimension(rep.getLength(), numColumns);
         this.rep = rep;
     }
 
-    public Dimension getDimension() {
+    public GridDimension getDimension() {
         return dimension;
     }
 
@@ -78,7 +78,7 @@ public class Grid<E> implements Iterable<Position> {
         return column;
     }
 
-    public Grid<E> getSubGrid(Position startingPosition, Dimension subGridDimension) {
+    public Grid<E> getSubGrid(Position startingPosition, GridDimension subGridDimension) {
         if (startingPosition.getRow() + subGridDimension.getNumRows() - 1 >= dimension.getNumRows() ||
             startingPosition.getColumn() + subGridDimension.getNumColumns() - 1 >= dimension.getNumColumns()) {
             throw new IllegalArgumentException("Position " + startingPosition + " and dimension " + subGridDimension +

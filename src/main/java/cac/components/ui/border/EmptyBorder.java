@@ -1,5 +1,8 @@
 package cac.components.ui.border;
 
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
 public class EmptyBorder implements Border {
     private javax.swing.border.Border rep;
 

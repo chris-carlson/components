@@ -1,7 +1,7 @@
 package cac.components.io.csv;
 
 import cac.components.collection.Array;
-import cac.components.collection.Dimension;
+import cac.components.collection.GridDimension;
 import cac.components.collection.Grid;
 
 import java.util.Iterator;
@@ -15,7 +15,7 @@ public class CsvData implements Iterable<Array<String>> {
         this.data = data;
     }
 
-    public Dimension getDimension() {
+    public GridDimension getDimension() {
         return data.getDimension();
     }
 

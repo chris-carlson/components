@@ -12,25 +12,25 @@ class PositionIteratorTest {
 
     @Test
     void hasNext() {
-        instance = new PositionIterator(new Dimension(2, 2), 1, 1);
+        instance = new PositionIterator(new GridDimension(2, 2), 1, 1);
         Assertions.assertTrue(instance.hasNext());
     }
 
     @Test
     void doesNotHaveNext() {
-        instance = new PositionIterator(new Dimension(2, 2), 2, 0);
+        instance = new PositionIterator(new GridDimension(2, 2), 2, 0);
         Assertions.assertFalse(instance.hasNext());
     }
 
     @Test
     void next() {
-        instance = new PositionIterator(new Dimension(2, 2), 1, 1);
+        instance = new PositionIterator(new GridDimension(2, 2), 1, 1);
         Assertions.assertEquals(new Position(1, 1), instance.next());
     }
 
     @Test
     void cannotGetNext() {
-        instance = new PositionIterator(new Dimension(2, 2), 2, 0);
+        instance = new PositionIterator(new GridDimension(2, 2), 2, 0);
         assertThrows(NoSuchElementException.class, () -> instance.next());
     }
 }

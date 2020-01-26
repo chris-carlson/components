@@ -1,13 +1,13 @@
 package cac.components.ui.component;
 
-import cac.components.ui.attribute.Holdable;
-import cac.components.ui.attribute.Modifiable;
+import java.awt.FlowLayout;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-import java.awt.FlowLayout;
 
-public class Switcher implements Holdable, Modifiable {
+import cac.components.ui.attribute.Holdable;
+
+public class Switcher implements Holdable {
     private JPanel rep;
     private Holdable holdable1;
     private Holdable holdable2;

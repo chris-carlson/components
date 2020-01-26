@@ -1,9 +1,9 @@
 package cac.components.ui;
 
-public class Dimension {
+public class UiDimension {
     private java.awt.Dimension rep;
 
-    public Dimension(int width, int height) {
+    public UiDimension(int width, int height) {
         if (width < 0 || height < 0) {
             throw new IllegalArgumentException(
                     "The width \"" + width + "\" and height \"" + height + "\" must be non-negative");

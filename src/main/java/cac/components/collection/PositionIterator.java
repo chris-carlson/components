@@ -4,17 +4,17 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class PositionIterator implements Iterator<Position> {
-    private Dimension dimension;
+    private GridDimension dimension;
     private int currentRow;
     private int currentColumn;
 
-    public PositionIterator(Dimension dimension) {
+    public PositionIterator(GridDimension dimension) {
         this.dimension = dimension;
         currentRow = 0;
         currentColumn = 0;
     }
 
-    PositionIterator(Dimension dimension, int currentRow, int currentColumn) {
+    PositionIterator(GridDimension dimension, int currentRow, int currentColumn) {
         this.dimension = dimension;
         this.currentRow = currentRow;
         this.currentColumn = currentColumn;

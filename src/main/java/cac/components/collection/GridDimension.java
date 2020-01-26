@@ -3,11 +3,11 @@ package cac.components.collection;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-public class Dimension {
+public class GridDimension {
     private int numRows;
     private int numColumns;
 
-    public Dimension(int numRows, int numColumns) {
+    public GridDimension(int numRows, int numColumns) {
         if (numRows < 0 || numColumns < 0) {
             throw new IllegalArgumentException(
                     "The number of rows \"" + numRows + "\" and number of columns \"" + numColumns +
@@ -41,7 +41,7 @@ public class Dimension {
         if (obj.getClass() != getClass()) {
             return false;
         }
-        Dimension other = (Dimension) obj;
+        GridDimension other = (GridDimension) obj;
         return new EqualsBuilder().append(numRows, other.numRows).append(numColumns, other.numColumns).isEquals();
     }
 

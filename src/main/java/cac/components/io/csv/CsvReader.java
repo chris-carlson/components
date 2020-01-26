@@ -1,6 +1,6 @@
 package cac.components.io.csv;
 
-import cac.components.collection.Dimension;
+import cac.components.collection.GridDimension;
 import cac.components.collection.Grid;
 import cac.components.collection.Position;
 import cac.components.path.File;
@@ -40,7 +40,7 @@ public class CsvReader {
         } catch (IOException exception) {
             LOGGER.error("Could not parse CSV file \"" + file.getPath() + "\"");
         }
-        return new CsvData(new CsvHeaders(Lists.newArrayList()), new Grid<>(new Dimension(0, 0)));
+        return new CsvData(new CsvHeaders(Lists.newArrayList()), new Grid<>(new GridDimension(0, 0)));
     }
 
     private CsvData readData(CSVParser parser) {
@@ -70,11 +70,11 @@ public class CsvReader {
         return new CsvHeaders(headerNames);
     }
 
-    private Dimension getDimension(List<CSVRecord> records) {
+    private GridDimension getDimension(List<CSVRecord> records) {
         int numColumns = 0;
         if (!records.isEmpty()) {
             numColumns = records.get(0).size();
         }
-        return new Dimension(records.size(), numColumns);
+        return new GridDimension(records.size(), numColumns);
     }
 }

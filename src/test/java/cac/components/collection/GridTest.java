@@ -9,21 +9,21 @@ class GridTest {
 
     @Test
     void reportDimension() {
-        Dimension dimension = new Dimension(2, 3);
+        GridDimension dimension = new GridDimension(2, 3);
         instance = new Grid<>(dimension);
         Assertions.assertEquals(dimension, instance.getDimension());
     }
 
     @Test
     void checkPositionIsValid() {
-        Dimension dimension = new Dimension(2, 3);
+        GridDimension dimension = new GridDimension(2, 3);
         instance = new Grid<>(dimension);
         Assertions.assertTrue(instance.isValid(new Position(1, 2)));
     }
 
     @Test
     void checkPositionIsInvalid() {
-        Dimension dimension = new Dimension(2, 3);
+        GridDimension dimension = new GridDimension(2, 3);
         instance = new Grid<>(dimension);
         Assertions.assertFalse(instance.isValid(new Position(2, 2)));
     }
@@ -48,13 +48,13 @@ class GridTest {
 
     @Test
     void doNotReportElementWhenElementIsNull() {
-        instance = new Grid<>(new Dimension(2, 3));
+        instance = new Grid<>(new GridDimension(2, 3));
         Assertions.assertThrows(IllegalArgumentException.class, () -> instance.get(new Position(1, 1)));
     }
 
     @Test
     void setElementOnUntouchedIndex() {
-        instance = new Grid<>(new Dimension(2, 3));
+        instance = new Grid<>(new GridDimension(2, 3));
         instance.set(new Position(1, 1), 5);
         Assertions.assertEquals(Integer.valueOf(5), instance.get(new Position(1, 1)));
     }
@@ -80,7 +80,7 @@ class GridTest {
 
     @Test
     void doNotSetElementWhenElementIsNull() {
-        instance = new Grid<>(new Dimension(2, 3));
+        instance = new Grid<>(new GridDimension(2, 3));
         Assertions.assertThrows(IllegalArgumentException.class, () -> instance.set(new Position(1, 1), null));
     }
 
@@ -112,14 +112,14 @@ class GridTest {
     void reportSubGrid() {
         instance = getTestInstance1();
         Assertions.assertEquals(GridCreator.create("2,3|5,6"),
-                instance.getSubGrid(new Position(0, 1), new Dimension(2, 2)));
+                instance.getSubGrid(new Position(0, 1), new GridDimension(2, 2)));
     }
 
     @Test
     void doNotReportSubGridWhenPastBounds() {
         instance = getTestInstance1();
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> instance.getSubGrid(new Position(0, 1), new Dimension(2, 3)));
+                () -> instance.getSubGrid(new Position(0, 1), new GridDimension(2, 3)));
     }
 
     @Test

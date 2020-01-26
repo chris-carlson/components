@@ -1,6 +1,6 @@
 package cac.components.ui.component.form;
 
-import cac.components.ui.Dimension;
+import cac.components.ui.UiDimension;
 import cac.components.ui.attribute.Axis;
 import cac.components.ui.color.Theme;
 import cac.components.ui.component.Container;
@@ -23,18 +23,18 @@ public class Checkbox extends Container {
     private boolean isEnabled;
     private Panel panel;
 
-    public Checkbox(String text, Font font, Dimension dimension, DataAction<Boolean> action) {
+    public Checkbox(String text, Font font, UiDimension dimension, DataAction<Boolean> action) {
         isChecked = false;
         isEnabled = true;
         this.panel = new Panel();
         panel.setBackground(theme.getDefaultColor());
         panel.setBorder(FormBorder.DEFAULT_BORDER);
-        panel.setSize(new Dimension(dimension.getHeight(), dimension.getHeight()));
+        panel.setSize(new UiDimension(dimension.getHeight(), dimension.getHeight()));
         panel.addMouseListener(new CheckboxMouseHoverListener(this));
         panel.addMouseListener(new CheckboxClickListener(this, action));
         Label label = new Label(text, font);
         label.setAlignment(HorizontalTextAlignment.LEFT, VerticalTextAlignment.CENTER);
-        label.setSize(new Dimension(dimension.getWidth() - dimension.getHeight(), dimension.getHeight()));
+        label.setSize(new UiDimension(dimension.getWidth() - dimension.getHeight(), dimension.getHeight()));
         add(panel);
         addGap(GAP, Axis.HORIZONTAL);
         add(label);

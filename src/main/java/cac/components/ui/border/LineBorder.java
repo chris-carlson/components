@@ -1,7 +1,9 @@
 package cac.components.ui.border;
 
 import cac.components.ui.color.Color;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode
 public class LineBorder implements Border {
     private javax.swing.border.Border rep;
 

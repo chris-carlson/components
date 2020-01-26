@@ -1,10 +1,12 @@
 package cac.components.ui.layout;
 
 import cac.components.ui.component.Container;
+import lombok.EqualsAndHashCode;
 
 import javax.swing.BoxLayout;
 import java.awt.LayoutManager;
 
+@EqualsAndHashCode
 public class LineLayout implements Layout {
     private LayoutManager rep;
 
@@ -13,7 +15,7 @@ public class LineLayout implements Layout {
         rep = new BoxLayout(container.getRep(), axis);
     }
 
-    @Override
+	@Override
     public LayoutManager getRep() {
         return rep;
     }

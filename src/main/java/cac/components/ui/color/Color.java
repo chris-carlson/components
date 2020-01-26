@@ -1,5 +1,8 @@
 package cac.components.ui.color;
 
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
 public class Color {
     public static final Color DEFAULT = new Color(238, 238, 238);
     public static final Color BLACK = new Color(0, 0, 0);

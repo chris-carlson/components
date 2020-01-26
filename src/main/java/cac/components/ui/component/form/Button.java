@@ -1,6 +1,6 @@
 package cac.components.ui.component.form;
 
-import cac.components.ui.Dimension;
+import cac.components.ui.UiDimension;
 import cac.components.ui.attribute.alignment.HorizontalAlignment;
 import cac.components.ui.attribute.alignment.VerticalAlignment;
 import cac.components.ui.color.Theme;
@@ -19,7 +19,7 @@ public class Button extends Label {
 
     private boolean isEnabled;
 
-    public Button(String text, Font font, Dimension dimension, SimpleAction action) {
+    public Button(String text, Font font, UiDimension dimension, SimpleAction action) {
         super(text, font);
         isEnabled = true;
         setAlignment(HorizontalAlignment.CENTER, VerticalAlignment.CENTER);

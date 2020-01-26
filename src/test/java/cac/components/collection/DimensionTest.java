@@ -5,16 +5,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class DimensionTest {
-    private Dimension instance;
+    private GridDimension instance;
 
     @Test
     void doNotCreateInstanceWhenNumRowsIsNegative() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Dimension(-1, 0));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new GridDimension(-1, 0));
     }
 
     @Test
     void doNotCreateInstanceWhenNumColumnsIsNegative() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Dimension(0, -1));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new GridDimension(0, -1));
     }
 
     @Test
@@ -41,11 +41,11 @@ class DimensionTest {
         Assertions.assertEquals("(1, 2)", instance.toString());
     }
 
-    private Dimension getTestInstance1() {
-        return new Dimension(1, 2);
+    private GridDimension getTestInstance1() {
+        return new GridDimension(1, 2);
     }
 
-    private Dimension getTestInstance2() {
-        return new Dimension(2, 1);
+    private GridDimension getTestInstance2() {
+        return new GridDimension(2, 1);
     }
 }

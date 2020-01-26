@@ -11,6 +11,10 @@ import java.util.Map;
 public interface Writable {
     JLabel getRep();
 
+    default String getText() {
+        return getRep().getText();
+    }
+
     default void setText(String text) {
         getRep().setText("<html>" + text + "</html>");
     }
