@@ -1,7 +1,7 @@
 package cac.components.ui.listener.mouse.preset;
 
-import cac.components.ui.color.Color;
 import cac.components.ui.attribute.Colorable;
+import cac.components.ui.color.Color;
 import cac.components.ui.listener.mouse.MouseEvent;
 import cac.components.ui.listener.mouse.MouseHoverListener;
 

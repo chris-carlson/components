@@ -1,8 +1,10 @@
 package cac.components.collection;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
+@EqualsAndHashCode
+@ToString
 public class Position {
     private int row;
     private int column;
@@ -22,30 +24,5 @@ public class Position {
 
     public int getColumn() {
         return column;
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(row).append(column).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj == this) {
-            return true;
-        }
-        if (obj.getClass() != getClass()) {
-            return false;
-        }
-        Position other = (Position) obj;
-        return new EqualsBuilder().append(row, other.row).append(column, other.column).isEquals();
-    }
-
-    @Override
-    public String toString() {
-        return "(" + row + ", " + column + ")";
     }
 }

@@ -1,33 +1,26 @@
 package cac.components.ui.component;
 
-import java.awt.Dimension;
-import java.util.ArrayList;
-import java.util.List;
+import cac.components.ui.attribute.Bordered;
+import cac.components.ui.attribute.Clickable;
+import cac.components.ui.attribute.Holdable;
+import cac.components.ui.attribute.Holder;
 
 import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.util.Arrays;
 
-import cac.components.ui.attribute.Holdable;
-import cac.components.ui.attribute.Holder;
-import cac.components.ui.attribute.Sizable;
-
-public class Layer implements Holdable, Holder, Sizable {
+public class Layer implements Bordered, Clickable, Holdable, Holder {
     private JLayeredPane rep;
-    private List<Holdable> components;
 
     public Layer() {
         rep = new JLayeredPane();
-        components = new ArrayList<>();
     }
 
     @Override
     public JComponent getRep() {
         return rep;
-    }
-
-    @Override
-    public List<Holdable> getComponents() {
-        return components;
     }
 
     @Override
@@ -40,12 +33,17 @@ public class Layer implements Holdable, Holder, Sizable {
         Dimension dimension = component.getPreferredSize();
         component.setBounds(0, 0, (int) dimension.getWidth(), (int) dimension.getHeight());
         rep.setPreferredSize(dimension);
-        rep.add(component, layer);
+        rep.add(component, Integer.valueOf(layer));
     }
 
     public void remove(Holdable holdable) {
         rep.remove(holdable.getRep());
         rep.repaint();
         rep.revalidate();
+    }
+
+    public void remove(int layer) {
+        Component[] components = rep.getComponentsInLayer(Integer.valueOf(layer));
+        Arrays.stream(components).forEach(component -> rep.remove(component));
     }
 }

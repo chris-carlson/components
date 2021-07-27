@@ -16,7 +16,7 @@ public class CsvIterator implements Iterator<Array<String>> {
 
     @Override
     public boolean hasNext() {
-        return currentRow == data.getDimension().getNumRows();
+        return currentRow == data.dimension().getNumRows();
     }
 
     @Override

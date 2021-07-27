@@ -1,11 +1,10 @@
 package cac.components.ui.component;
 
-import java.awt.FlowLayout;
+import cac.components.ui.attribute.Holdable;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-
-import cac.components.ui.attribute.Holdable;
+import java.awt.FlowLayout;
 
 public class Switcher implements Holdable {
     private JPanel rep;

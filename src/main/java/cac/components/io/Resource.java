@@ -1,24 +1,16 @@
 package cac.components.io;
 
-import java.nio.file.Paths;
-
 import cac.components.path.File;
+
+import java.nio.file.Paths;
 
 public class Resource {
     public static File getMainFile(String resourcePath) {
-        File file = new File(getFilePath(resourcePath, "main"));
-        if (!file.exists()) {
-            throw new IllegalArgumentException("Could not find resource with path \"" + resourcePath + "\"");
-        }
-        return file;
+        return new File(getFilePath(resourcePath, "main"));
     }
 
     public static File getTestFile(String resourcePath) {
-        File file = new File(getFilePath(resourcePath, "test"));
-        if (!file.exists()) {
-            throw new IllegalArgumentException("Could not find resource with path \"" + resourcePath + "\"");
-        }
-        return file;
+        return new File(getFilePath(resourcePath, "test"));
     }
 
     private static String getFilePath(String resourcePath, String baseFolder) {

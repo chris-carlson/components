@@ -5,9 +5,6 @@ import com.google.common.collect.Sets;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 class ConsumerTest {
     private Consumer instance;
 
@@ -62,7 +59,7 @@ class ConsumerTest {
     @Test
     void cannotPeek() {
         instance = new Consumer("");
-        assertThrows(AssertionError.class, () -> instance.peek());
+        Assertions.assertThrows(AssertionError.class, () -> instance.peek());
     }
 
     @Test
@@ -82,7 +79,7 @@ class ConsumerTest {
     @Test
     void cannotConsumeSpecificCharacter() {
         instance = new Consumer("abc");
-        assertThrows(AssertionError.class, () -> instance.consumeCharacter('b'));
+        Assertions.assertThrows(AssertionError.class, () -> instance.consumeCharacter('b'));
     }
 
     @Test
@@ -95,7 +92,20 @@ class ConsumerTest {
     @Test
     void cannotConsumeOneOf() {
         instance = new Consumer("abc");
-        assertThrows(AssertionError.class, () -> instance.consumeOneOf(Sets.newHashSet('b', 'c')));
+        Assertions.assertThrows(AssertionError.class, () -> instance.consumeOneOf(Sets.newHashSet('b', 'c')));
+    }
+
+    @Test
+    void consumeCharacters() {
+        instance = new Consumer("abcdef");
+        Assertions.assertEquals("abc", instance.consumeCharacters(3));
+        Assertions.assertEquals("def", instance.getRep());
+    }
+
+    @Test
+    void cannotConsumeCharacters() {
+        instance = new Consumer("abc");
+        Assertions.assertThrows(IllegalArgumentException.class, () -> instance.consumeCharacters(4));
     }
 
     @Test
@@ -122,7 +132,7 @@ class ConsumerTest {
     @Test
     void cannotConsumeToOneOf() {
         instance = new Consumer("abcdef");
-        assertThrows(AssertionError.class, () -> instance.consumeToOneOf(Sets.newHashSet('g', 'h', 'i')));
+        Assertions.assertThrows(AssertionError.class, () -> instance.consumeToOneOf(Sets.newHashSet('g', 'h', 'i')));
     }
 
     @Test
@@ -135,7 +145,7 @@ class ConsumerTest {
     @Test
     void cannotConsumeToSequence() {
         instance = new Consumer("abcdef");
-        assertThrows(AssertionError.class, () -> instance.consumeTo("ghi"));
+        Assertions.assertThrows(AssertionError.class, () -> instance.consumeTo("ghi"));
     }
 
     @Test
@@ -181,22 +191,16 @@ class ConsumerTest {
     }
 
     @Test
-    void stringRep() {
-        instance = new Consumer("abc");
-        Assertions.assertEquals("abc", instance.toString());
-    }
-
-    @Test
     void consumePair() {
         instance = new Consumer("(abc(def(ghi)jkl)mno)pqr");
-        assertEquals("abc(def(ghi)jkl)mno", instance.consumePair('(', ')'));
-        assertEquals("pqr", instance.getRep());
+        Assertions.assertEquals("abc(def(ghi)jkl)mno", instance.consumePair('(', ')'));
+        Assertions.assertEquals("pqr", instance.getRep());
     }
 
     @Test
     void consumeList() {
         instance = new Consumer("[(abc),(def),(ghi)]jkl");
-        assertEquals(Lists.newArrayList("abc", "def", "ghi"), instance.consumeList('(', ')'));
-        assertEquals("jkl", instance.getRep());
+        Assertions.assertEquals(Lists.newArrayList("abc", "def", "ghi"), instance.consumeList('(', ')'));
+        Assertions.assertEquals("jkl", instance.getRep());
     }
 }

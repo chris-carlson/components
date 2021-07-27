@@ -1,21 +1,20 @@
 package cac.components.io.json;
 
+import cac.components.path.File;
+import com.google.gson.JsonParser;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.Reader;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
-import com.google.gson.JsonParser;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import cac.components.path.File;
 
 public class JsonReader {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -45,12 +44,11 @@ public class JsonReader {
     }
 
     private Optional<JsonElement> readElement() {
-        try {
-            Reader reader = new BufferedReader(new FileReader(file.getPath()));
+        try (Reader reader = new BufferedReader(new FileReader(file.getPath()))) {
             JsonParser parser = new JsonParser();
             return Optional.of(new JsonElement(parser.parse(reader)));
-        } catch (FileNotFoundException exception) {
-            LOGGER.error("Could not parse CSV file \"" + file.getPath() + "\"");
+        } catch (IOException exception) {
+            LOGGER.error(MessageFormat.format("Could not parse CSV file \"{0}\"", file.getPath()));
         }
         return Optional.empty();
     }

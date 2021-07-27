@@ -1,8 +1,10 @@
 package cac.components.collection;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
+@EqualsAndHashCode
+@ToString
 public class GridDimension {
     private int numRows;
     private int numColumns;
@@ -23,30 +25,5 @@ public class GridDimension {
 
     public int getNumColumns() {
         return numColumns;
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(numRows).append(numColumns).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj == this) {
-            return true;
-        }
-        if (obj.getClass() != getClass()) {
-            return false;
-        }
-        GridDimension other = (GridDimension) obj;
-        return new EqualsBuilder().append(numRows, other.numRows).append(numColumns, other.numColumns).isEquals();
-    }
-
-    @Override
-    public String toString() {
-        return "(" + numRows + ", " + numColumns + ")";
     }
 }

@@ -1,7 +1,6 @@
 package cac.components.game;
 
 import com.google.common.collect.Lists;
-import com.google.common.testing.EqualsTester;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -13,44 +12,44 @@ class DeckTest {
     private Deck<Integer> instance;
 
     @Test
-    void doNotCreateInstanceWhenDrawPileContainsNullElements() {
+    void cannotCreateInstanceWhenDrawPileContainsNullElements() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Deck<>(Lists.newArrayList(1, null, 2)));
     }
 
     @Test
-    void reportDrawPileSize() {
-        instance = getTestInstance1();
+    void getDrawPileSize() {
+        instance = new Deck<>(Lists.newArrayList(1, 2, 3), Lists.newArrayList(4, 5));
         Assertions.assertEquals(Lists.newArrayList(1, 2, 3), instance.getDrawPile());
     }
 
     @Test
-    void reportDiscardPileSize() {
-        instance = getTestInstance1();
+    void getDiscardPileSize() {
+        instance = new Deck<>(Lists.newArrayList(1, 2, 3), Lists.newArrayList(4, 5));
         Assertions.assertEquals(Lists.newArrayList(4, 5), instance.getDiscardPile());
     }
 
     @Test
     void draw() {
-        instance = getTestInstance1();
+        instance = new Deck<>(Lists.newArrayList(1, 2, 3), Lists.newArrayList(4, 5));
         Assertions.assertEquals(Integer.valueOf(1), instance.draw());
     }
 
     @Test
-    void doNotDrawWhenDrawPileIsEmpty() {
+    void cannotDrawWhenDrawPileIsEmpty() {
         instance = new Deck<>();
         Assertions.assertThrows(IllegalStateException.class, () -> instance.draw());
     }
 
     @Test
     void discard() {
-        instance = getTestInstance1();
+        instance = new Deck<>(Lists.newArrayList(1, 2, 3), Lists.newArrayList(4, 5));
         instance.discard(6);
         List<Integer> discardPile = instance.getDiscardPile();
         Assertions.assertEquals(Integer.valueOf(6), discardPile.get(2));
     }
 
     @Test
-    void doNotDiscardWhenElementIsNull() {
+    void cannotDiscardWhenElementIsNull() {
         instance = new Deck<>();
         Assertions.assertThrows(IllegalArgumentException.class, () -> instance.discard(null));
     }
@@ -66,29 +65,9 @@ class DeckTest {
 
     @Test
     void addDiscardPileToDrawPile() {
-        instance = getTestInstance1();
+        instance = new Deck<>(Lists.newArrayList(1, 2, 3), Lists.newArrayList(4, 5));
         instance.addDiscardPileToDrawPile();
         Assertions.assertEquals(Lists.newArrayList(1, 2, 3, 4, 5), instance.getDrawPile());
         Assertions.assertTrue(instance.getDiscardPile().isEmpty());
-    }
-
-    @Test
-    void checkEquals() {
-        new EqualsTester().addEqualityGroup(getTestInstance1(), getTestInstance1())
-                .addEqualityGroup(getTestInstance2(), getTestInstance2()).testEquals();
-    }
-
-    @Test
-    void checkToString() {
-        instance = getTestInstance1();
-        Assertions.assertEquals("([1, 2, 3], [4, 5])", instance.toString());
-    }
-
-    private Deck<Integer> getTestInstance1() {
-        return new Deck<>(Lists.newArrayList(1, 2, 3), Lists.newArrayList(4, 5));
-    }
-
-    private Deck<Integer> getTestInstance2() {
-        return new Deck<>(Lists.newArrayList(1, 2, 3), Lists.newArrayList(4, 6));
     }
 }

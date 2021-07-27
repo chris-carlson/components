@@ -15,7 +15,7 @@ public class LineLayout implements Layout {
         rep = new BoxLayout(container.getRep(), axis);
     }
 
-	@Override
+    @Override
     public LayoutManager getRep() {
         return rep;
     }

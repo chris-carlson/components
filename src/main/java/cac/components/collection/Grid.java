@@ -1,39 +1,47 @@
 package cac.components.collection;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
-public class Grid<E> implements Iterable<Position> {
+@EqualsAndHashCode
+@ToString
+public class Grid<E> implements Iterable<E> {
     private GridDimension dimension;
     private Array<Array<E>> rep;
 
     public Grid(GridDimension dimension) {
         this.dimension = dimension;
         rep = new Array<>(dimension.getNumRows());
-        for (int index = 0; index < rep.getLength(); index++) {
+        for (int index = 0; index < rep.length(); index++) {
             rep.set(index, new Array<>(dimension.getNumColumns()));
         }
     }
 
     Grid(Array<Array<E>> rep) {
-        int numColumns = 0;
-        if (rep.getLength() > 0) {
-            numColumns = rep.get(0).getLength();
-        }
-        dimension = new GridDimension(rep.getLength(), numColumns);
+        int numColumns = rep.length() > 0 ? rep.get(0).length() : 0;
+        dimension = new GridDimension(rep.length(), numColumns);
         this.rep = rep;
-    }
-
-    public GridDimension getDimension() {
-        return dimension;
     }
 
     public boolean isValid(Position position) {
         return position.getRow() < dimension.getNumRows() && position.getColumn() < dimension.getNumColumns();
+    }
+
+    public boolean isSet(Position position) {
+        if (!isValid(position)) {
+            throw new IllegalArgumentException("Position " + position + " must be in the bounds of the grid");
+        }
+        Array<E> row = rep.get(position.getRow());
+        return row.isSet(position.getColumn());
+    }
+
+    public GridDimension dimension() {
+        return dimension;
     }
 
     public E get(Position position) {
@@ -59,28 +67,27 @@ public class Grid<E> implements Iterable<Position> {
     }
 
     public Array<E> getRow(int rowIndex) {
-        if (rowIndex >= dimension.getNumRows()) {
+        if (!isRowValid(rowIndex)) {
             throw new IllegalArgumentException("Row position \"" + rowIndex + "\" must be in the bounds of the grid");
         }
         return rep.get(rowIndex);
     }
 
     public Array<E> getColumn(int columnIndex) {
-        if (columnIndex >= dimension.getNumRows()) {
+        if (!isColumnValid(columnIndex)) {
             throw new IllegalArgumentException(
                     "Column position \"" + columnIndex + "\" must be in the bounds of the grid");
         }
         Array<E> column = new Array<>(dimension.getNumRows());
         for (int rowIndex = 0; rowIndex < dimension.getNumRows(); rowIndex++) {
-            Array<E> row = getRow(rowIndex);
+            Array<E> row = rep.get(rowIndex);
             column.set(rowIndex, row.get(columnIndex));
         }
         return column;
     }
 
     public Grid<E> getSubGrid(Position startingPosition, GridDimension subGridDimension) {
-        if (startingPosition.getRow() + subGridDimension.getNumRows() - 1 >= dimension.getNumRows() ||
-            startingPosition.getColumn() + subGridDimension.getNumColumns() - 1 >= dimension.getNumColumns()) {
+        if (!isSubGridValid(startingPosition, subGridDimension)) {
             throw new IllegalArgumentException("Position " + startingPosition + " and dimension " + subGridDimension +
                                                " must be in the bounds of the grid");
         }
@@ -96,41 +103,39 @@ public class Grid<E> implements Iterable<Position> {
         return box;
     }
 
-    public List<E> toList() {
-        List<E> list = new ArrayList<>();
-        for (Position position : this) {
-            list.add(get(position));
+    private boolean isRowValid(int rowIndex) {
+        return rowIndex >= 0 && rowIndex < dimension.getNumRows();
+    }
+
+    private boolean isColumnValid(int columnIndex) {
+        return columnIndex >= 0 && columnIndex < dimension.getNumColumns();
+    }
+
+    private boolean isSubGridValid(Position startingPosition, GridDimension subGridDimension) {
+        boolean isRowValid = startingPosition.getRow() + subGridDimension.getNumRows() - 1 < dimension.getNumRows();
+        boolean isColumnValid =
+                startingPosition.getColumn() + subGridDimension.getNumColumns() - 1 < dimension.getNumColumns();
+        return isRowValid && isColumnValid;
+    }
+
+    private List<E> toList() {
+        List<E> items = new ArrayList<>();
+        for (Array<E> column : rep) {
+            for (E item : column) {
+                items.add(item);
+            }
         }
-        return list;
+        return items;
+    }
+
+    public Stream<E> stream() {
+        List<E> items = toList();
+        return items.stream();
     }
 
     @Override
-    public Iterator<Position> iterator() {
-        return new PositionIterator(dimension);
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(rep).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj == this) {
-            return true;
-        }
-        if (obj.getClass() != getClass()) {
-            return false;
-        }
-        Grid<?> other = (Grid<?>) obj;
-        return new EqualsBuilder().append(rep, other.rep).isEquals();
-    }
-
-    @Override
-    public String toString() {
-        return rep.toString();
+    public Iterator<E> iterator() {
+        List<E> items = toList();
+        return items.iterator();
     }
 }

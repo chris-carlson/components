@@ -1,14 +1,17 @@
 package cac.components.path;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.MessageFormat;
 
+@EqualsAndHashCode
+@ToString
 public class File {
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -49,32 +52,7 @@ public class File {
         try {
             Files.delete(Path.of(rep.getAbsolutePath()));
         } catch (IOException exception) {
-            LOGGER.error("Could not delete file \"" + rep.getAbsolutePath() + "\"");
+            LOGGER.error(MessageFormat.format("Could not delete file \"{0}\"", rep.getAbsolutePath()));
         }
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(rep).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj == this) {
-            return true;
-        }
-        if (obj.getClass() != getClass()) {
-            return false;
-        }
-        File other = (File) obj;
-        return new EqualsBuilder().append(rep, other.rep).isEquals();
-    }
-
-    @Override
-    public String toString() {
-        return rep.getAbsolutePath();
     }
 }

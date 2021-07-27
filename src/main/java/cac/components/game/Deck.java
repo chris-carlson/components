@@ -1,14 +1,21 @@
 package cac.components.game;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+@EqualsAndHashCode
+@ToString
 public class Deck<E> {
+    @SafeVarargs
+    public static <E> Deck<E> of(E... elements) {
+        return new Deck<>(List.of(elements));
+    }
+
     private List<E> drawPile;
     private List<E> discardPile;
 
@@ -64,30 +71,5 @@ public class Deck<E> {
         while (!discardPile.isEmpty()) {
             drawPile.add(discardPile.remove(0));
         }
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(drawPile).append(discardPile).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj == this) {
-            return true;
-        }
-        if (obj.getClass() != getClass()) {
-            return false;
-        }
-        Deck<?> other = (Deck<?>) obj;
-        return new EqualsBuilder().append(drawPile, other.drawPile).append(discardPile, other.discardPile).isEquals();
-    }
-
-    @Override
-    public String toString() {
-        return "(" + drawPile.toString() + ", " + discardPile.toString() + ")";
     }
 }

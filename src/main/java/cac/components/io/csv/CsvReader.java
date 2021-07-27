@@ -1,9 +1,11 @@
 package cac.components.io.csv;
 
-import cac.components.collection.GridDimension;
 import cac.components.collection.Grid;
+import cac.components.collection.GridDimension;
 import cac.components.collection.Position;
+import cac.components.collection.PositionGrid;
 import cac.components.path.File;
+import com.google.common.collect.Lists;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -18,8 +20,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.google.common.collect.Lists;
 
 public class CsvReader {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -38,7 +38,7 @@ public class CsvReader {
                 return readData(parser);
             }
         } catch (IOException exception) {
-            LOGGER.error("Could not parse CSV file \"" + file.getPath() + "\"");
+            LOGGER.error(exception);
         }
         return new CsvData(new CsvHeaders(Lists.newArrayList()), new Grid<>(new GridDimension(0, 0)));
     }
@@ -47,13 +47,14 @@ public class CsvReader {
         try {
             List<CSVRecord> records = parser.getRecords();
             CsvHeaders headers = readHeaders(parser.getHeaderMap());
-            Grid<String> grid = new Grid<>(getDimension(records));
-            for (Position position : grid) {
+            Grid<String> grid = new Grid<>(dimension(records));
+            PositionGrid positionGrid = new PositionGrid(grid.dimension());
+            for (Position position : positionGrid) {
                 grid.set(position, records.get(position.getRow()).get(position.getColumn()));
             }
             return new CsvData(headers, grid);
-        } catch (IOException e) {
-            LOGGER.error("Could not read CSV records");
+        } catch (IOException exception) {
+            LOGGER.error(exception);
         }
         return null;
     }
@@ -70,7 +71,7 @@ public class CsvReader {
         return new CsvHeaders(headerNames);
     }
 
-    private GridDimension getDimension(List<CSVRecord> records) {
+    private GridDimension dimension(List<CSVRecord> records) {
         int numColumns = 0;
         if (!records.isEmpty()) {
             numColumns = records.get(0).size();

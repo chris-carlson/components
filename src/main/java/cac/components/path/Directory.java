@@ -1,18 +1,21 @@
 package cac.components.path;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+@EqualsAndHashCode
+@ToString
 public class Directory {
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -73,8 +76,8 @@ public class Directory {
     }
 
     public Directory getDirectory(String name) {
-        Optional<Directory> optionalFile = directories.stream().filter(directory -> directory.getName().equals(name))
-                .findFirst();
+        Optional<Directory> optionalFile =
+                directories.stream().filter(directory -> directory.getName().equals(name)).findFirst();
         if (optionalFile.isPresent()) {
             return optionalFile.get();
         }
@@ -89,32 +92,7 @@ public class Directory {
         try {
             Files.delete(Path.of(rep.getAbsolutePath()));
         } catch (IOException exception) {
-            LOGGER.error("Could not delete file \"" + rep.getAbsolutePath() + "\"");
+            LOGGER.error(MessageFormat.format("Could not delete directory \"{0}\"", rep.getAbsolutePath()));
         }
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(rep).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj == this) {
-            return true;
-        }
-        if (obj.getClass() != getClass()) {
-            return false;
-        }
-        Directory other = (Directory) obj;
-        return new EqualsBuilder().append(rep, other.rep).isEquals();
-    }
-
-    @Override
-    public String toString() {
-        return rep.getAbsolutePath();
     }
 }

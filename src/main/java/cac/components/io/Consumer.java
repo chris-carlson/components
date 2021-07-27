@@ -1,11 +1,13 @@
 package cac.components.io;
 
 import com.google.common.collect.Sets;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+@ToString
 public class Consumer {
     private String rep;
 
@@ -42,7 +44,7 @@ public class Consumer {
 
     public Character consumeCharacter(Character expected) {
         Character consumedChar = peek();
-        if (expected != null && consumedChar != expected) {
+        if (expected != null && !consumedChar.equals(expected)) {
             throw new AssertionError("Expected \"" + expected + "\" but consumed \"" + consumedChar + "\"");
         }
         rep = rep.substring(1);
@@ -136,11 +138,11 @@ public class Consumer {
         StringBuilder builder = new StringBuilder();
         consumeCharacter(startCharacter);
         int numStartCharacter = 0;
-        while (peek() != endCharacter || numStartCharacter > 0) {
+        while (!peek().equals(endCharacter) || numStartCharacter > 0) {
             Character character = consumeCharacter();
-            if (character == startCharacter) {
+            if (character.equals(startCharacter)) {
                 numStartCharacter++;
-            } else if (character == endCharacter) {
+            } else if (character.equals(endCharacter)) {
                 numStartCharacter--;
             }
             builder.append(character);
@@ -172,11 +174,6 @@ public class Consumer {
     }
 
     String getRep() {
-        return rep;
-    }
-
-    @Override
-    public String toString() {
         return rep;
     }
 }

@@ -1,12 +1,16 @@
 package cac.components.collection;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
-public class Array<E> {
+@EqualsAndHashCode
+@ToString
+public class Array<E> implements Iterable<E> {
     private List<E> rep;
 
     public Array(int length) {
@@ -20,23 +24,33 @@ public class Array<E> {
         this.rep = rep;
     }
 
-    public int getLength() {
+    public boolean isValid(int index) {
+        return index >= 0 && index < rep.size();
+    }
+
+    public boolean isSet(int index) {
+        if (!isValid(index)) {
+            throw new IllegalArgumentException("Index \"" + index + "\" is not in the bounds of the array");
+        }
+        return rep.get(index) != null;
+    }
+
+    public int length() {
         return rep.size();
     }
 
     public E get(int index) {
-        if (index < 0 || index >= rep.size()) {
+        if (!isValid(index)) {
             throw new IllegalArgumentException("Index \"" + index + "\" is not in the bounds of the array");
         }
-        E element = rep.get(index);
-        if (element == null) {
+        if (!isSet(index)) {
             throw new IllegalArgumentException("Index \"" + index + "\" has not been set");
         }
-        return element;
+        return rep.get(index);
     }
 
     public void set(int index, E element) {
-        if (index < 0 || index >= rep.size()) {
+        if (!isValid(index)) {
             throw new IllegalArgumentException("Index \"" + index + "\" is not in the bounds of the array");
         }
         if (element == null) {
@@ -45,40 +59,12 @@ public class Array<E> {
         rep.set(index, element);
     }
 
-    public List<E> toList() {
-        List<E> list = new ArrayList<>();
-        for (int index = 0; index < getLength(); index++) {
-            list.add(get(index));
-        }
-        return list;
-    }
-
-    boolean isSet(int index) {
-        return rep.get(index) != null;
+    public Stream<E> stream() {
+        return rep.stream();
     }
 
     @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(rep).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj == this) {
-            return true;
-        }
-        if (obj.getClass() != getClass()) {
-            return false;
-        }
-        Array<?> other = (Array<?>) obj;
-        return new EqualsBuilder().append(rep, other.rep).isEquals();
-    }
-
-    @Override
-    public String toString() {
-        return rep.toString();
+    public Iterator<E> iterator() {
+        return rep.iterator();
     }
 }

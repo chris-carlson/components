@@ -1,6 +1,5 @@
 package cac.components.collection;
 
-import com.google.common.testing.EqualsTester;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -8,46 +7,59 @@ class GridTest {
     private Grid<Integer> instance;
 
     @Test
-    void reportDimension() {
+    void getDimension() {
         GridDimension dimension = new GridDimension(2, 3);
         instance = new Grid<>(dimension);
-        Assertions.assertEquals(dimension, instance.getDimension());
+        Assertions.assertEquals(dimension, instance.dimension());
     }
 
     @Test
-    void checkPositionIsValid() {
+    void checkValidPosition() {
         GridDimension dimension = new GridDimension(2, 3);
         instance = new Grid<>(dimension);
         Assertions.assertTrue(instance.isValid(new Position(1, 2)));
     }
 
     @Test
-    void checkPositionIsInvalid() {
+    void checkInvalidPosition() {
         GridDimension dimension = new GridDimension(2, 3);
         instance = new Grid<>(dimension);
         Assertions.assertFalse(instance.isValid(new Position(2, 2)));
     }
 
     @Test
-    void reportElement() {
-        instance = getTestInstance1();
+    void checkSetIndex() {
+        instance = GridCreator.create("1,2,3|4,5,6");
+        Assertions.assertTrue(instance.isSet(new Position(1, 2)));
+    }
+
+    @Test
+    void checkUnsetIndex() {
+        GridDimension dimension = new GridDimension(2, 3);
+        instance = new Grid<>(dimension);
+        Assertions.assertFalse(instance.isSet(new Position(1, 2)));
+    }
+
+    @Test
+    void getElement() {
+        instance = GridCreator.create("1,2,3|4,5,6");
         Assertions.assertEquals(Integer.valueOf(5), instance.get(new Position(1, 1)));
     }
 
     @Test
-    void doNotReportElementWhenPositionRowIsPastUpperBound() {
-        instance = getTestInstance1();
+    void cannotGetElementWhenPositionRowIsPastUpperBound() {
+        instance = GridCreator.create("1,2,3|4,5,6");
         Assertions.assertThrows(IllegalArgumentException.class, () -> instance.get(new Position(2, 0)));
     }
 
     @Test
-    void doNotReportElementWhenPositionColumnIsPastUpperBound() {
-        instance = getTestInstance1();
+    void cannotGetElementWhenPositionColumnIsPastUpperBound() {
+        instance = GridCreator.create("1,2,3|4,5,6");
         Assertions.assertThrows(IllegalArgumentException.class, () -> instance.get(new Position(0, 3)));
     }
 
     @Test
-    void doNotReportElementWhenElementIsNull() {
+    void cannotGetElementWhenElementIsNull() {
         instance = new Grid<>(new GridDimension(2, 3));
         Assertions.assertThrows(IllegalArgumentException.class, () -> instance.get(new Position(1, 1)));
     }
@@ -61,84 +73,64 @@ class GridTest {
 
     @Test
     void setElementOnTouchedIndex() {
-        instance = getTestInstance1();
+        instance = GridCreator.create("1,2,3|4,5,6");
         instance.set(new Position(1, 1), 7);
         Assertions.assertEquals(Integer.valueOf(7), instance.get(new Position(1, 1)));
     }
 
     @Test
-    void doNotSetElementWhenPositionRowIsPastUpperBound() {
-        instance = getTestInstance1();
+    void cannotSetElementWhenPositionRowIsPastUpperBound() {
+        instance = GridCreator.create("1,2,3|4,5,6");
         Assertions.assertThrows(IllegalArgumentException.class, () -> instance.set(new Position(2, 0), 2));
     }
 
     @Test
-    void doNotSetElementWhenPositionColumnIsPastUpperBound() {
-        instance = getTestInstance1();
+    void cannotSetElementWhenPositionColumnIsPastUpperBound() {
+        instance = GridCreator.create("1,2,3|4,5,6");
         Assertions.assertThrows(IllegalArgumentException.class, () -> instance.set(new Position(0, 3), 2));
     }
 
     @Test
-    void doNotSetElementWhenElementIsNull() {
+    void cannotSetElementWhenElementIsNull() {
         instance = new Grid<>(new GridDimension(2, 3));
         Assertions.assertThrows(IllegalArgumentException.class, () -> instance.set(new Position(1, 1), null));
     }
 
     @Test
-    void reportRow() {
-        instance = getTestInstance1();
+    void getRow() {
+        instance = GridCreator.create("1,2,3|4,5,6");
         Assertions.assertEquals(ArrayCreator.create("4,5,6"), instance.getRow(1));
     }
 
     @Test
-    void doNotReportRowWhenIndexIsPastUpperBound() {
-        instance = getTestInstance1();
+    void cannotGetRowWhenIndexIsPastUpperBound() {
+        instance = GridCreator.create("1,2,3|4,5,6");
         Assertions.assertThrows(IllegalArgumentException.class, () -> instance.getRow(2));
     }
 
     @Test
-    void reportColumn() {
-        instance = getTestInstance1();
+    void getColumn() {
+        instance = GridCreator.create("1,2,3|4,5,6");
         Assertions.assertEquals(ArrayCreator.create("2,5"), instance.getColumn(1));
     }
 
     @Test
-    void doNotReportColumnWhenIndexIsPastUpperBound() {
-        instance = getTestInstance1();
+    void cannotGetColumnWhenIndexIsPastUpperBound() {
+        instance = GridCreator.create("1,2,3|4,5,6");
         Assertions.assertThrows(IllegalArgumentException.class, () -> instance.getColumn(4));
     }
 
     @Test
-    void reportSubGrid() {
-        instance = getTestInstance1();
+    void getSubGrid() {
+        instance = GridCreator.create("1,2,3|4,5,6");
         Assertions.assertEquals(GridCreator.create("2,3|5,6"),
                 instance.getSubGrid(new Position(0, 1), new GridDimension(2, 2)));
     }
 
     @Test
-    void doNotReportSubGridWhenPastBounds() {
-        instance = getTestInstance1();
+    void cannotGetSubGridWhenPastBounds() {
+        instance = GridCreator.create("1,2,3|4,5,6");
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> instance.getSubGrid(new Position(0, 1), new GridDimension(2, 3)));
-    }
-
-    @Test
-    void checkEquals() {
-        new EqualsTester().addEqualityGroup(getTestInstance1(), getTestInstance1())
-                .addEqualityGroup(getTestInstance2(), getTestInstance2()).testEquals();
-    }
-
-    @Test
-    void checkToString() {
-        instance = getTestInstance1();
-        Assertions.assertEquals("[[1, 2, 3], [4, 5, 6]]", instance.toString());
-    }
-
-    private Grid<Integer> getTestInstance1() {
-        return GridCreator.create("1,2,3|4,5,6");
-    }
-
-    private Grid<Integer> getTestInstance2() {
-        return GridCreator.create("1,2,3|4,5,7");
     }
 }
