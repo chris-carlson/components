@@ -1,19 +1,6 @@
 package cac.components.game;
 
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
-
-@EqualsAndHashCode
-@ToString
-public class Card {
-    private Suit suit;
-    private Rank rank;
-
-    public Card(Suit suit, Rank rank) {
-        this.suit = suit;
-        this.rank = rank;
-    }
-
+public record Card(Suit suit, Rank rank) {
     public Suit getSuit() {
         return suit;
     }

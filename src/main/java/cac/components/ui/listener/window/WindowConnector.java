@@ -3,13 +3,7 @@ package cac.components.ui.listener.window;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-public class WindowConnector implements WindowListener {
-    private WindowCloseListener closeListener;
-
-    public WindowConnector(WindowCloseListener closeListener) {
-        this.closeListener = closeListener;
-    }
-
+public record WindowConnector(WindowCloseListener closeListener) implements WindowListener {
     @Override
     public void windowOpened(WindowEvent event) {
     }

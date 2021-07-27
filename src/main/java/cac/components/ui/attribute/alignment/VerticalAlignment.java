@@ -5,7 +5,7 @@ import java.awt.Component;
 public enum VerticalAlignment {
     TOP(Component.TOP_ALIGNMENT), CENTER(Component.CENTER_ALIGNMENT), BOTTOM(Component.BOTTOM_ALIGNMENT);
 
-    private float rep;
+    private final float rep;
 
     VerticalAlignment(float rep) {
         this.rep = rep;

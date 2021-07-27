@@ -6,9 +6,9 @@ import cac.components.ui.listener.mouse.MouseEvent;
 import cac.components.ui.listener.mouse.MouseHoverListener;
 
 public class BorderMouseHoverListener extends MouseHoverListener {
-    private Bordered component;
-    private Border defaultBorder;
-    private Border highlightBorder;
+    private final Bordered component;
+    private final Border defaultBorder;
+    private final Border highlightBorder;
 
     public BorderMouseHoverListener(Bordered component, Border defaultBorder, Border highlightBorder) {
         this.component = component;

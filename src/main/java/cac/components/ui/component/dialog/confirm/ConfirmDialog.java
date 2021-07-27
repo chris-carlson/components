@@ -6,10 +6,10 @@ import cac.components.ui.component.dialog.MessageType;
 import javax.swing.JOptionPane;
 
 public abstract class ConfirmDialog<E> implements Dialog {
-    private String title;
-    private String message;
-    private MessageType messageType;
-    private OptionType optionType;
+    private final String title;
+    private final String message;
+    private final MessageType messageType;
+    private final OptionType optionType;
     private int response;
 
     public ConfirmDialog(String title, String message, MessageType messageType, OptionType optionType) {

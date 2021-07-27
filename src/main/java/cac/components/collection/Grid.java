@@ -11,8 +11,8 @@ import java.util.stream.Stream;
 @EqualsAndHashCode
 @ToString
 public class Grid<E> implements Iterable<E> {
-    private GridDimension dimension;
-    private Array<Array<E>> rep;
+    private final GridDimension dimension;
+    private final Array<Array<E>> rep;
 
     public Grid(GridDimension dimension) {
         this.dimension = dimension;

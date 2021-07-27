@@ -11,20 +11,20 @@ class SelectionTest {
 
     @Test
     void drawCity() {
-        instance = new Selection<Integer>(new Deck<>(List.of(1, 2)));
+        instance = new Selection<>(new Deck<>(List.of(1, 2)));
         instance.addToTableau();
         Assertions.assertEquals(List.of(1), instance.getTableau());
     }
 
     @Test
     void cannotDrawCity() {
-        instance = new Selection<Integer>(new Deck<>(new ArrayList<>()));
+        instance = new Selection<>(new Deck<>(new ArrayList<>()));
         Assertions.assertThrows(IllegalStateException.class, instance::addToTableau);
     }
 
     @Test
     void discardCity() {
-        instance = new Selection<Integer>(new Deck<>(List.of(1, 2)));
+        instance = new Selection<>(new Deck<>(List.of(1, 2)));
         instance.addToTableau();
         instance.removeFromTableau(1);
         Assertions.assertEquals(List.of(), instance.getTableau());
@@ -32,7 +32,7 @@ class SelectionTest {
 
     @Test
     void cannotDiscardCity() {
-        instance = new Selection<Integer>(new Deck<>(List.of(1)));
+        instance = new Selection<>(new Deck<>(List.of(1)));
         instance.addToTableau();
         Assertions.assertThrows(IllegalArgumentException.class, () -> instance.removeFromTableau(2));
     }

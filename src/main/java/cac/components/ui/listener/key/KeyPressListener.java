@@ -1,7 +1,7 @@
 package cac.components.ui.listener.key;
 
 public abstract class KeyPressListener implements KeyListener {
-    private KeyConnector rep;
+    private final KeyConnector rep;
 
     public KeyPressListener() {
         rep = new KeyConnector(this);

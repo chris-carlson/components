@@ -1,13 +1,12 @@
 package cac.components.ui.listener.key;
 
-import cac.components.collection.MapBuilder;
 import cac.components.ui.listener.InputEvent;
 
 import java.util.Map;
 
 public class KeyEvent extends InputEvent {
     private static final Map<Integer, Key> KEY_MAPPER =
-            MapBuilder.buildMap(Map.entry(java.awt.event.KeyEvent.VK_ESCAPE, Key.ESC),
+            Map.ofEntries(Map.entry(java.awt.event.KeyEvent.VK_ESCAPE, Key.ESC),
                     Map.entry(java.awt.event.KeyEvent.VK_F1, Key.F1), Map.entry(java.awt.event.KeyEvent.VK_F2, Key.F2),
                     Map.entry(java.awt.event.KeyEvent.VK_F3, Key.F3), Map.entry(java.awt.event.KeyEvent.VK_F4, Key.F4),
                     Map.entry(java.awt.event.KeyEvent.VK_F5, Key.F5), Map.entry(java.awt.event.KeyEvent.VK_F6, Key.F6),
@@ -86,7 +85,7 @@ public class KeyEvent extends InputEvent {
                     Map.entry(java.awt.event.KeyEvent.VK_PAGE_UP, Key.PAGE_UP),
                     Map.entry(java.awt.event.KeyEvent.VK_PAGE_DOWN, Key.PAGE_DOWN));
 
-    private java.awt.event.KeyEvent rep;
+    private final java.awt.event.KeyEvent rep;
 
     public KeyEvent(java.awt.event.KeyEvent rep) {
         super(rep);

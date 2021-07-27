@@ -6,9 +6,9 @@ import cac.components.ui.listener.mouse.MouseEvent;
 import cac.components.ui.listener.mouse.MouseHoverListener;
 
 public class BackgroundMouseHoverListener extends MouseHoverListener {
-    private Colorable component;
-    private Color defaultColor;
-    private Color highlightColor;
+    private final Colorable component;
+    private final Color defaultColor;
+    private final Color highlightColor;
 
     public BackgroundMouseHoverListener(Colorable component, Color defaultColor, Color highlightColor) {
         this.component = component;

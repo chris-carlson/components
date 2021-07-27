@@ -5,7 +5,7 @@ import cac.components.ui.listener.mouse.MouseEvent;
 import cac.components.ui.listener.mouse.MouseHoverListener;
 
 public class ButtonMouseHoverListener extends MouseHoverListener {
-    private Button button;
+    private final Button button;
 
     public ButtonMouseHoverListener(Button button) {
         this.button = button;

@@ -6,15 +6,7 @@ import cac.components.collection.GridDimension;
 
 import java.util.Iterator;
 
-public class CsvData implements Iterable<Array<String>> {
-    private CsvHeaders headers;
-    private Grid<String> data;
-
-    public CsvData(CsvHeaders headers, Grid<String> data) {
-        this.headers = headers;
-        this.data = data;
-    }
-
+public record CsvData(CsvHeaders headers, Grid<String> data) implements Iterable<Array<String>> {
     public GridDimension dimension() {
         return data.dimension();
     }

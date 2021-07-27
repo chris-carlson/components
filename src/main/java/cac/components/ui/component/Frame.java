@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import java.awt.Window;
 
 public class Frame implements Windowed {
-    private JFrame rep;
+    private final JFrame rep;
 
     public Frame(String title) {
         this(title, CloseOperation.EXIT);

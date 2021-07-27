@@ -3,7 +3,7 @@ package cac.components.ui.listener.mouse;
 import cac.components.ui.listener.InputEvent;
 
 public class MouseEvent extends InputEvent {
-    private java.awt.event.MouseEvent rep;
+    private final java.awt.event.MouseEvent rep;
 
     public MouseEvent(java.awt.event.MouseEvent rep) {
         super(rep);

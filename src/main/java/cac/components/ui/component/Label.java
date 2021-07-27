@@ -15,7 +15,7 @@ import cac.components.ui.text.VerticalTextAlignment;
 import javax.swing.JLabel;
 
 public class Label implements Bordered, Colorable, Focusable, Holdable, Clickable, Typeable, Sizable, Writable {
-    private JLabel rep;
+    private final JLabel rep;
 
     public Label(Font font) {
         this("", font);

@@ -19,9 +19,9 @@ import java.util.Optional;
 public class Directory {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private java.io.File rep;
-    private List<File> files;
-    private List<Directory> directories;
+    private final java.io.File rep;
+    private final List<File> files;
+    private final List<Directory> directories;
 
     public Directory(String path) {
         rep = new java.io.File(path);

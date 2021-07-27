@@ -6,9 +6,9 @@ import cac.components.ui.listener.mouse.MouseEvent;
 import cac.components.ui.listener.mouse.MousePressListener;
 
 public class BackgroundMousePressListener extends MousePressListener {
-    private Colorable component;
-    private Color defaultColor;
-    private Color highlightColor;
+    private final Colorable component;
+    private final Color defaultColor;
+    private final Color highlightColor;
 
     public BackgroundMousePressListener(Colorable component, Color defaultColor, Color highlightColor) {
         this.component = component;

@@ -3,9 +3,9 @@ package cac.components.ui.component.dialog;
 import javax.swing.JOptionPane;
 
 public class InputDialog implements Dialog {
-    private String title;
-    private String message;
-    private MessageType type;
+    private final String title;
+    private final String message;
+    private final MessageType type;
     private String input;
 
     public InputDialog(String title, String message, MessageType type) {

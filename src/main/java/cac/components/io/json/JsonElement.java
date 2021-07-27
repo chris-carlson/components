@@ -12,7 +12,7 @@ import java.util.Map;
 
 @EqualsAndHashCode
 public class JsonElement {
-    private com.google.gson.JsonElement rep;
+    private final com.google.gson.JsonElement rep;
 
     public JsonElement(com.google.gson.JsonElement rep) {
         this.rep = rep;

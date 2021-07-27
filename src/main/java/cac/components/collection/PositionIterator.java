@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class PositionIterator implements Iterator<Position> {
-    private GridDimension dimension;
+    private final GridDimension dimension;
     private int currentRow;
     private int currentColumn;
 

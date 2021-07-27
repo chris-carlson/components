@@ -13,7 +13,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 public class Container implements Bordered, Clickable, Colorable, Focusable, Holdable, Holder, Typeable {
-    private JPanel rep;
+    private final JPanel rep;
 
     public Container() {
         rep = new JPanel();

@@ -5,7 +5,7 @@ import java.awt.Component;
 public enum HorizontalAlignment {
     LEFT(Component.LEFT_ALIGNMENT), CENTER(Component.CENTER_ALIGNMENT), RIGHT(Component.RIGHT_ALIGNMENT);
 
-    private float rep;
+    private final float rep;
 
     HorizontalAlignment(float rep) {
         this.rep = rep;

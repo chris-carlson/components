@@ -6,8 +6,8 @@ import cac.components.ui.listener.mouse.MouseClickListener;
 import cac.components.ui.listener.mouse.MouseEvent;
 
 public class ButtonClickListener extends MouseClickListener {
-    private Button button;
-    private SimpleAction action;
+    private final Button button;
+    private final SimpleAction action;
 
     public ButtonClickListener(Button button, SimpleAction action) {
         this.button = button;

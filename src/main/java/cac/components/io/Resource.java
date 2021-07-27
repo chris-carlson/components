@@ -14,7 +14,7 @@ public class Resource {
     }
 
     private static String getFilePath(String resourcePath, String baseFolder) {
-        return Paths.get("").toAbsolutePath().toString() + "\\src\\" + baseFolder + "\\resources\\" + resourcePath;
+        return Paths.get("").toAbsolutePath() + "\\src\\" + baseFolder + "\\resources\\" + resourcePath;
     }
 
     private Resource() {

@@ -19,7 +19,7 @@ import java.util.Optional;
 public class JsonReader {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private File file;
+    private final File file;
 
     public JsonReader(File file) {
         this.file = file;
@@ -45,8 +45,7 @@ public class JsonReader {
 
     private Optional<JsonElement> readElement() {
         try (Reader reader = new BufferedReader(new FileReader(file.getPath()))) {
-            JsonParser parser = new JsonParser();
-            return Optional.of(new JsonElement(parser.parse(reader)));
+            return Optional.of(new JsonElement(JsonParser.parseReader(reader)));
         } catch (IOException exception) {
             LOGGER.error(MessageFormat.format("Could not parse CSV file \"{0}\"", file.getPath()));
         }

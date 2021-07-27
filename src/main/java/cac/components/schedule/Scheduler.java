@@ -5,7 +5,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Scheduler {
-    private ScheduledExecutorService rep;
+    private final ScheduledExecutorService rep;
 
     public Scheduler() {
         rep = Executors.newSingleThreadScheduledExecutor();

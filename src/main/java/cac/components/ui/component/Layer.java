@@ -12,7 +12,7 @@ import java.awt.Dimension;
 import java.util.Arrays;
 
 public class Layer implements Bordered, Clickable, Holdable, Holder {
-    private JLayeredPane rep;
+    private final JLayeredPane rep;
 
     public Layer() {
         rep = new JLayeredPane();
@@ -43,7 +43,7 @@ public class Layer implements Bordered, Clickable, Holdable, Holder {
     }
 
     public void remove(int layer) {
-        Component[] components = rep.getComponentsInLayer(Integer.valueOf(layer));
-        Arrays.stream(components).forEach(component -> rep.remove(component));
+        Component[] components = rep.getComponentsInLayer(layer);
+        Arrays.stream(components).forEach(rep::remove);
     }
 }

@@ -17,7 +17,7 @@ public class Deck<E> {
     }
 
     private List<E> drawPile;
-    private List<E> discardPile;
+    private final List<E> discardPile;
 
     public Deck() {
         drawPile = new ArrayList<>();

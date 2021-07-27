@@ -8,7 +8,7 @@ import java.awt.LayoutManager;
 
 @EqualsAndHashCode
 public class LineLayout implements Layout {
-    private LayoutManager rep;
+    private final LayoutManager rep;
 
     public LineLayout(Container container, LayoutDirection direction) {
         int axis = direction == LayoutDirection.LEFT_TO_RIGHT ? BoxLayout.X_AXIS : BoxLayout.Y_AXIS;

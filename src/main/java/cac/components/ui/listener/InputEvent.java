@@ -1,7 +1,7 @@
 package cac.components.ui.listener;
 
 public class InputEvent {
-    private java.awt.event.InputEvent rep;
+    private final java.awt.event.InputEvent rep;
 
     public InputEvent(java.awt.event.InputEvent rep) {
         this.rep = rep;

@@ -1,7 +1,7 @@
 package cac.components.ui.listener.window;
 
 public abstract class WindowCloseListener implements WindowListener {
-    private WindowConnector rep;
+    private final WindowConnector rep;
 
     public WindowCloseListener() {
         rep = new WindowConnector(this);

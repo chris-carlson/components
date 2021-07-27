@@ -1,7 +1,7 @@
 package cac.components.ui;
 
 public class UiDimension {
-    private java.awt.Dimension rep;
+    private final java.awt.Dimension rep;
 
     public UiDimension(int width, int height) {
         if (width < 0 || height < 0) {

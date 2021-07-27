@@ -8,7 +8,7 @@ public class Color {
     public static final Color BLACK = new Color(0, 0, 0);
     public static final Color WHITE = new Color(255, 255, 255);
 
-    private java.awt.Color rep;
+    private final java.awt.Color rep;
 
     public Color(int red, int green, int blue) {
         rep = new java.awt.Color(red, green, blue);

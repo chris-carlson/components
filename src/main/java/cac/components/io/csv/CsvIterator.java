@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class CsvIterator implements Iterator<Array<String>> {
-    private CsvData data;
+    private final CsvData data;
     private int currentRow;
 
     public CsvIterator(CsvData data) {

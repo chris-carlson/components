@@ -14,8 +14,8 @@ import java.util.Map;
 public class JsonWriter {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private File file;
-    private com.google.gson.stream.JsonWriter writer;
+    private final File file;
+    private final com.google.gson.stream.JsonWriter writer;
 
     public JsonWriter(File file) {
         this.file = file;

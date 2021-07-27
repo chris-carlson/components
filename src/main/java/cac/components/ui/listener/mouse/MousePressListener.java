@@ -1,7 +1,7 @@
 package cac.components.ui.listener.mouse;
 
 public abstract class MousePressListener implements MouseListener {
-    private MouseConnector rep;
+    private final MouseConnector rep;
 
     public MousePressListener() {
         rep = new MouseConnector(this);

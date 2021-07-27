@@ -7,7 +7,7 @@ import java.util.Set;
 public class KeyConnector implements KeyListener {
     private KeyPressListener pressListener;
     private KeyReleaseListener releaseListener;
-    private Set<Integer> pressedKeys;
+    private final Set<Integer> pressedKeys;
 
     private KeyConnector() {
         pressedKeys = new HashSet<>();

@@ -6,8 +6,8 @@ import cac.components.ui.listener.mouse.MouseClickListener;
 import cac.components.ui.listener.mouse.MouseEvent;
 
 public class CheckboxClickListener extends MouseClickListener {
-    private Checkbox checkbox;
-    private DataAction<Boolean> action;
+    private final Checkbox checkbox;
+    private final DataAction<Boolean> action;
 
     public CheckboxClickListener(Checkbox checkbox, DataAction<Boolean> action) {
         this.checkbox = checkbox;

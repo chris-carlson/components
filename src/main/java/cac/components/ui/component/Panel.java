@@ -12,7 +12,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 public class Panel implements Bordered, Colorable, Focusable, Holdable, Clickable, Typeable, Sizable {
-    private JPanel rep;
+    private final JPanel rep;
 
     public Panel() {
         rep = new JPanel();

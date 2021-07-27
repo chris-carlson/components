@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 @EqualsAndHashCode
 @ToString
 public class Array<E> implements Iterable<E> {
-    private List<E> rep;
+    private final List<E> rep;
 
     public Array(int length) {
         rep = new ArrayList<>();

@@ -5,7 +5,7 @@ import cac.components.ui.listener.mouse.MouseEvent;
 import cac.components.ui.listener.mouse.MouseHoverListener;
 
 public class CheckboxMouseHoverListener extends MouseHoverListener {
-    private Checkbox checkbox;
+    private final Checkbox checkbox;
 
     public CheckboxMouseHoverListener(Checkbox checkbox) {
         this.checkbox = checkbox;

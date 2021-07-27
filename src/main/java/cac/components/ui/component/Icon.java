@@ -12,7 +12,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 public class Icon implements Focusable, Holdable, Clickable, Typeable {
-    private JLabel rep;
+    private final JLabel rep;
 
     public Icon(File file, UiDimension dimension) {
         rep = new JLabel(new ImageIcon(file.getPath()));

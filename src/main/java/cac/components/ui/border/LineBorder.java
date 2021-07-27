@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
 public class LineBorder implements Border {
-    private javax.swing.border.Border rep;
+    private final javax.swing.border.Border rep;
 
     public LineBorder(Color color, int thickness) {
         rep = new javax.swing.border.LineBorder(color.getRep(), thickness);

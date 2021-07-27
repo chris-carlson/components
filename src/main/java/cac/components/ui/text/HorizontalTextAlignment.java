@@ -5,7 +5,7 @@ import javax.swing.SwingConstants;
 public enum HorizontalTextAlignment {
     LEFT(SwingConstants.LEFT), CENTER(SwingConstants.CENTER), RIGHT(SwingConstants.RIGHT);
 
-    private int rep;
+    private final int rep;
 
     HorizontalTextAlignment(int rep) {
         this.rep = rep;

@@ -5,7 +5,7 @@ import cac.components.ui.listener.mouse.MouseClickListener;
 import cac.components.ui.listener.mouse.MouseEvent;
 
 public class FocusMouseClickListener extends MouseClickListener {
-    private Focusable component;
+    private final Focusable component;
 
     public FocusMouseClickListener(Focusable component) {
         this.component = component;

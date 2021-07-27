@@ -15,7 +15,7 @@ import java.text.MessageFormat;
 public class File {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private java.io.File rep;
+    private final java.io.File rep;
 
     public File(String path) {
         rep = new java.io.File(path);

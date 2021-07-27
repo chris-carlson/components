@@ -21,7 +21,7 @@ public class Checkbox extends Container {
 
     private boolean isChecked;
     private boolean isEnabled;
-    private Panel panel;
+    private final Panel panel;
 
     public Checkbox(String text, Font font, UiDimension dimension, DataAction<Boolean> action) {
         isChecked = false;

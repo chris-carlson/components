@@ -8,7 +8,7 @@ import cac.components.ui.listener.mouse.MousePressListener;
 public class ButtonMousePressListener extends MousePressListener {
     private static final Theme theme = Theme.getInstance();
 
-    private Button button;
+    private final Button button;
 
     public ButtonMousePressListener(Button button) {
         this.button = button;

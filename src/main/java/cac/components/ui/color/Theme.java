@@ -1,7 +1,7 @@
 package cac.components.ui.color;
 
 public class Theme {
-    private static Theme instance = new Theme(Color.DEFAULT, Color.DEFAULT, Color.DEFAULT);
+    private static final Theme instance = new Theme(Color.DEFAULT, Color.DEFAULT, Color.DEFAULT);
 
     public static Theme getInstance() {
         return instance;

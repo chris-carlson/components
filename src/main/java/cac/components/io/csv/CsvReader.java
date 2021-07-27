@@ -21,14 +21,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CsvReader {
+public record CsvReader(File file) {
     private static final Logger LOGGER = LogManager.getLogger();
-
-    private File file;
-
-    public CsvReader(File file) {
-        this.file = file;
-    }
 
     public CsvData getData() {
         try {

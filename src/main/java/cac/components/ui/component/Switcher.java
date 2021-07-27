@@ -7,9 +7,9 @@ import javax.swing.JPanel;
 import java.awt.FlowLayout;
 
 public class Switcher implements Holdable {
-    private JPanel rep;
-    private Holdable holdable1;
-    private Holdable holdable2;
+    private final JPanel rep;
+    private final Holdable holdable1;
+    private final Holdable holdable2;
     private boolean displayingFirstContent;
 
     public Switcher(Holdable holdable1, Holdable holdable2) {

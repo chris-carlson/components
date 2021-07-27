@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import java.awt.FlowLayout;
 
 public class Swapper implements Holdable {
-    private JPanel rep;
+    private final JPanel rep;
 
     public Swapper() {
         rep = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));

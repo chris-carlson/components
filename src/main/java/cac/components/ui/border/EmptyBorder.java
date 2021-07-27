@@ -4,7 +4,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
 public class EmptyBorder implements Border {
-    private javax.swing.border.Border rep;
+    private final javax.swing.border.Border rep;
 
     public EmptyBorder(int thickness) {
         this(thickness, thickness, thickness, thickness);
