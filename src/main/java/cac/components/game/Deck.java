@@ -1,5 +1,6 @@
 package cac.components.game;
 
+import cac.components.collection.CollectionCreator;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -13,7 +14,7 @@ import java.util.Random;
 public class Deck<E> {
     @SafeVarargs
     public static <E> Deck<E> of(E... elements) {
-        return new Deck<>(List.of(elements));
+        return new Deck<>(CollectionCreator.createList(elements));
     }
 
     private List<E> drawPile;
