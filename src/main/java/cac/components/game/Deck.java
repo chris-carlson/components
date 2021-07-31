@@ -1,13 +1,13 @@
 package cac.components.game;
 
 import cac.components.collection.CollectionCreator;
+import cac.components.random.Random;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 
 @EqualsAndHashCode
 @ToString
@@ -64,7 +64,7 @@ public class Deck<E> {
         List<E> temp = new ArrayList<>(drawPile);
         drawPile = new ArrayList<>();
         while (!temp.isEmpty()) {
-            drawPile.add(temp.remove(random.nextInt(temp.size())));
+            drawPile.add(temp.remove(random.getRandomIndex(temp)));
         }
     }
 

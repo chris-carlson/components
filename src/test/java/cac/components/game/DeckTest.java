@@ -1,12 +1,12 @@
 package cac.components.game;
 
+import cac.components.random.Random;
 import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.List;
-import java.util.Random;
 
 class DeckTest {
     private Deck<Integer> instance;
@@ -57,7 +57,7 @@ class DeckTest {
     @Test
     void shuffle() {
         Random random = Mockito.mock(Random.class);
-        Mockito.when(random.nextInt(Mockito.anyInt())).thenReturn(2, 1, 1, 1, 0);
+        Mockito.when(random.getRandomIndex(Mockito.anyList())).thenReturn(2, 1, 1, 1, 0);
         instance = new Deck<>(Lists.newArrayList(1, 2, 3, 4, 5));
         instance.shuffle(random);
         Assertions.assertEquals(Lists.newArrayList(3, 2, 4, 5, 1), instance.getDrawPile());
