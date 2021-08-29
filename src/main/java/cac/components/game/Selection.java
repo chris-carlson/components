@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Selection<E> {
+    @SafeVarargs
+    public static <E> Selection<E> of(E... elements) {
+        return new Selection<>(Deck.of(elements));
+    }
+
     @Getter
     private final Deck<E> deck;
     @Getter
