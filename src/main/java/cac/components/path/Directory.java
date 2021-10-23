@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,22 +21,19 @@ public class Directory {
     private static final Logger LOGGER = LogManager.getLogger();
 
     private final java.io.File rep;
-    private final List<File> files;
-    private final List<Directory> directories;
+
+    public static Directory getCwd() {
+        return new Directory(Paths.get("").toAbsolutePath().toString());
+    }
+
+    public static Directory getEnvironmentDirectory(String environmentVariable) {
+        return new Directory(System.getenv(environmentVariable));
+    }
 
     public Directory(String path) {
         rep = new java.io.File(path);
         if (rep.exists() && !rep.isDirectory()) {
             throw new IllegalArgumentException("Path \"" + path + "\" is not a directory");
-        }
-        files = new ArrayList<>();
-        directories = new ArrayList<>();
-        for (java.io.File file : Objects.requireNonNull(rep.listFiles())) {
-            if (file.isDirectory()) {
-                directories.add(new Directory(file.getAbsolutePath()));
-            } else {
-                files.add(new File(file.getAbsolutePath()));
-            }
         }
     }
 
@@ -51,15 +49,25 @@ public class Directory {
         return rep.getAbsolutePath();
     }
 
-    public Directory join(String path) {
+    public Directory joinDirectory(String path) {
         return new Directory(rep.getAbsolutePath() + '\\' + path);
     }
 
+    public File joinFile(String path) {
+        return joinFile(path, "");
+    }
+
+    public File joinFile(String path, String extension) {
+        return new File(rep.getAbsolutePath() + '\\' + path + extension);
+    }
+
     public boolean hasFile(String name) {
+        List<File> files = getFiles();
         return files.stream().anyMatch(file -> file.getName().equals(name));
     }
 
     public File getFile(String name) {
+        List<File> files = getFiles();
         Optional<File> optionalFile = files.stream().filter(file -> file.getName().equals(name)).findFirst();
         if (optionalFile.isPresent()) {
             return optionalFile.get();
@@ -68,14 +76,22 @@ public class Directory {
     }
 
     public List<File> getFiles() {
+        List<File> files = new ArrayList<>();
+        for (java.io.File file : Objects.requireNonNull(rep.listFiles())) {
+            if (!file.isDirectory()) {
+                files.add(new File(file.getAbsolutePath()));
+            }
+        }
         return files;
     }
 
     public boolean hasDirectory(String name) {
+        List<Directory> directories = getDirectories();
         return directories.stream().anyMatch(directory -> directory.getName().equals(name));
     }
 
     public Directory getDirectory(String name) {
+        List<Directory> directories = getDirectories();
         Optional<Directory> optionalFile =
                 directories.stream().filter(directory -> directory.getName().equals(name)).findFirst();
         if (optionalFile.isPresent()) {
@@ -85,7 +101,29 @@ public class Directory {
     }
 
     public List<Directory> getDirectories() {
+        List<Directory> directories = new ArrayList<>();
+        for (java.io.File file : Objects.requireNonNull(rep.listFiles())) {
+            if (file.isDirectory()) {
+                directories.add(new Directory(file.getAbsolutePath()));
+            }
+        }
         return directories;
+    }
+
+    public void rename(String name) {
+        try {
+            Files.move(Path.of(rep.getAbsolutePath()), Path.of(name));
+        } catch (IOException exception) {
+            LOGGER.error(MessageFormat.format("Could not move directory \"{0}\"", rep.getAbsolutePath()));
+        }
+    }
+
+    public void copy(String name) {
+        try {
+            Files.copy(Path.of(rep.getAbsolutePath()), Path.of(name));
+        } catch (IOException exception) {
+            LOGGER.error(MessageFormat.format("Could not copy directory \"{0}\"", rep.getAbsolutePath()));
+        }
     }
 
     public void delete() {

@@ -48,6 +48,22 @@ public class File {
         return absolutePath.substring(0, absolutePath.lastIndexOf('\\'));
     }
 
+    public void rename(String name) {
+        try {
+            Files.move(Path.of(rep.getAbsolutePath()), Path.of(name));
+        } catch (IOException exception) {
+            LOGGER.error(MessageFormat.format("Could not move directory \"{0}\"", rep.getAbsolutePath()));
+        }
+    }
+
+    public void copy(String name) {
+        try {
+            Files.copy(Path.of(rep.getAbsolutePath()), Path.of(name));
+        } catch (IOException exception) {
+            LOGGER.error(MessageFormat.format("Could not copy directory \"{0}\"", rep.getAbsolutePath()));
+        }
+    }
+
     public void delete() {
         try {
             Files.delete(Path.of(rep.getAbsolutePath()));
